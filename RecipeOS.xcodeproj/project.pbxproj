@@ -11,6 +11,10 @@
 		F69ED7CD28D20E5100AE5A82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7CC28D20E5100AE5A82 /* ContentView.swift */; };
 		F69ED7CF28D20E5800AE5A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69ED7CE28D20E5800AE5A82 /* Assets.xcassets */; };
 		F69ED7D228D20E5800AE5A82 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69ED7D128D20E5800AE5A82 /* Preview Assets.xcassets */; };
+		F69ED7DD28D2105200AE5A82 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7DC28D2105200AE5A82 /* NavigationBar.swift */; };
+		F69ED7E028D211AA00AE5A82 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7DF28D211AA00AE5A82 /* Modifiers.swift */; };
+		F69ED7E328D2137B00AE5A82 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7E228D2137B00AE5A82 /* SearchView.swift */; };
+		F69ED7E528D2533E00AE5A82 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7E428D2533E00AE5A82 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		F69ED7CC28D20E5100AE5A82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F69ED7CE28D20E5800AE5A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69ED7D128D20E5800AE5A82 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F69ED7DC28D2105200AE5A82 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		F69ED7DF28D211AA00AE5A82 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		F69ED7E228D2137B00AE5A82 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		F69ED7E428D2533E00AE5A82 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				F69ED7CA28D20E5100AE5A82 /* RecipeOSApp.swift */,
-				F69ED7CC28D20E5100AE5A82 /* ContentView.swift */,
+				F69ED7D828D2101300AE5A82 /* Navigation */,
+				F69ED7DA28D2102800AE5A82 /* View */,
+				F69ED7DE28D2119400AE5A82 /* Styles */,
 				F69ED7CE28D20E5800AE5A82 /* Assets.xcassets */,
 				F69ED7D028D20E5800AE5A82 /* Preview Content */,
 			);
@@ -65,6 +75,48 @@
 				F69ED7D128D20E5800AE5A82 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F69ED7D828D2101300AE5A82 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F69ED7DC28D2105200AE5A82 /* NavigationBar.swift */,
+				F69ED7CC28D20E5100AE5A82 /* ContentView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F69ED7DA28D2102800AE5A82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F69ED7DB28D2103C00AE5A82 /* Main */,
+				F69ED7E128D2135A00AE5A82 /* Sheets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F69ED7DB28D2103C00AE5A82 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F69ED7DE28D2119400AE5A82 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				F69ED7DF28D211AA00AE5A82 /* Modifiers.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		F69ED7E128D2135A00AE5A82 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				F69ED7E228D2137B00AE5A82 /* SearchView.swift */,
+				F69ED7E428D2533E00AE5A82 /* AccountView.swift */,
+			);
+			path = Sheets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69ED7E528D2533E00AE5A82 /* AccountView.swift in Sources */,
+				F69ED7E328D2137B00AE5A82 /* SearchView.swift in Sources */,
+				F69ED7E028D211AA00AE5A82 /* Modifiers.swift in Sources */,
 				F69ED7CD28D20E5100AE5A82 /* ContentView.swift in Sources */,
 				F69ED7CB28D20E5100AE5A82 /* RecipeOSApp.swift in Sources */,
+				F69ED7DD28D2105200AE5A82 /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
