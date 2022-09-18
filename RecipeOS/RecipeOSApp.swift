@@ -11,7 +11,7 @@ import SwiftUI
 struct RecipeOSApp: App {
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            SignUpView()
         }
     }
 }

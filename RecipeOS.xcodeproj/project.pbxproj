@@ -17,7 +17,7 @@
 		F69ED7E528D2533E00AE5A82 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED7E428D2533E00AE5A82 /* AccountView.swift */; };
 		F69ED80228D6B05600AE5A82 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED80128D6B05600AE5A82 /* RegisterView.swift */; };
 		F69ED80428D6B06200AE5A82 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED80328D6B06200AE5A82 /* SignInView.swift */; };
-		F69ED80928D6B0EB00AE5A82 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED80828D6B0EB00AE5A82 /* Field.swift */; };
+		F69ED80928D6B0EB00AE5A82 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED80828D6B0EB00AE5A82 /* Enums.swift */; };
 		F69ED80C28D6B15E00AE5A82 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED80B28D6B15E00AE5A82 /* DataManager.swift */; };
 		F69ED81128D6B87900AE5A82 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED81028D6B87900AE5A82 /* PreferenceKeys.swift */; };
 		F69ED81328D6BA1A00AE5A82 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED81228D6BA1A00AE5A82 /* Style.swift */; };
@@ -36,7 +36,7 @@
 		F69ED7E428D2533E00AE5A82 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		F69ED80128D6B05600AE5A82 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F69ED80328D6B06200AE5A82 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		F69ED80828D6B0EB00AE5A82 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		F69ED80828D6B0EB00AE5A82 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F69ED80B28D6B15E00AE5A82 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F69ED81028D6B87900AE5A82 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		F69ED81228D6BA1A00AE5A82 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		F69ED80728D6B0DA00AE5A82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F69ED80828D6B0EB00AE5A82 /* Field.swift */,
+				F69ED80828D6B0EB00AE5A82 /* Enums.swift */,
 				F69ED81028D6B87900AE5A82 /* PreferenceKeys.swift */,
 			);
 			path = Model;
@@ -234,7 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F69ED80928D6B0EB00AE5A82 /* Field.swift in Sources */,
+				F69ED80928D6B0EB00AE5A82 /* Enums.swift in Sources */,
 				F69ED7E528D2533E00AE5A82 /* AccountView.swift in Sources */,
 				F69ED7E328D2137B00AE5A82 /* SearchView.swift in Sources */,
 				F69ED7E028D211AA00AE5A82 /* Modifiers.swift in Sources */,

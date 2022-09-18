@@ -10,6 +10,7 @@ import SwiftUI
 struct SignInView: View {
     
         // MARK: - Properties
+    @EnvironmentObject var manager: DataManager
     @FocusState private var focusedField: Field?
     @State private var email = ""
     @State private var password = ""
@@ -133,7 +134,7 @@ struct SignInView: View {
         HStack {
             Text("No account yet?")
             Button {
-                // change screen to sign in
+                manager.registerType = .signUp
             } label: {
                 Text("**sign up**")
             }
@@ -169,6 +170,7 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+            .environmentObject(DataManager())
             .preferredColorScheme(.dark)
     }
 }

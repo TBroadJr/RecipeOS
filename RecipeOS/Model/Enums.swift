@@ -11,3 +11,8 @@ enum Field: Hashable {
     case email
     case password
 }
+
+enum RegisterType {
+    case signIn
+    case signUp
+}

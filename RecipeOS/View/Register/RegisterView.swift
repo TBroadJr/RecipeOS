@@ -8,13 +8,34 @@
 import SwiftUI
 
 struct RegisterView: View {
+    
+        // MARK: - Properties
+    @EnvironmentObject var manager: DataManager
+    
+        // MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            background
+        }
+    }
+        // MARK: - Background
+    private var background: some View {
+        Color.clear
+            .background(.ultraThinMaterial)
+            .ignoresSafeArea()
+    }
+    
+        // MARK: - Display
+    private var display: some View {
+        Group {
+            switch
+        }
     }
 }
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         RegisterView()
+            .environmentObject(DataManager())
     }
 }
