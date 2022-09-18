@@ -47,6 +47,28 @@ struct StrokeStyle: ViewModifier {
     }
 }
 
+    // MARK: - Input Style
+struct InputStyle: ViewModifier {
+    var icon: String
+    func body(content: Content) -> some View {
+        content
+            .padding(15)
+            .padding(.leading, 40)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .strokeStyle(cornerRadius: 20)
+            .overlay(
+                Image(systemName: icon)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 36, height: 36)
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(8)
+            )
+    }
+}
+
+
+
     // MARK: - View Extension
 extension View {
     func animatableFont(size: Double, weight: Font.Weight = .regular, design: Font.Design = .default) -> some View {
@@ -54,6 +76,9 @@ extension View {
     }
     func strokeStyle(cornerRadius: CGFloat) -> some View {
         self.modifier(StrokeStyle(cornerRadius: cornerRadius))
+    }
+    func inputStyle(icon: String) -> some View {
+        self.modifier(InputStyle(icon: icon))
     }
 
 }

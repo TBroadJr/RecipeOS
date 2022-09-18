@@ -13,7 +13,7 @@ struct NavigationBar: View {
     @State private var showSearch = false
     @State private var showAccount = false
     @Binding var hasScrolled: Bool
-    var title = "Hello"
+    var title = ""
     
         // MARK: - Body
     var body: some View {
