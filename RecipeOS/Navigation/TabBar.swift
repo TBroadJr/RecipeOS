@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBar: View {
     
         // MARK: - Properties
-    @EnvironmentObject var manager: DataManager
+    @AppStorage("selectedTab") var selectedTab: Tab = .discover
     @State private var color: Color = .teal
     @State private var tabItemWidth: CGFloat = .zero
     private var tabItems = [
@@ -46,7 +46,10 @@ struct TabBar: View {
     private var buttons: some View {
         ForEach(tabItems) { item in
             Button {
-                buttonAction(item: item)
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    selectedTab = item.tab
+                    color = item.color
+                }
             } label: {
                 VStack(spacing: 0) {
                     Image(systemName: item.icon)
@@ -59,9 +62,9 @@ struct TabBar: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .foregroundStyle(manager.selectedTab == item.tab ? .primary : .secondary)
-            .blendMode(manager.selectedTab == item.tab ? .overlay : .normal)
-            .scaleEffect(manager.selectedTab == item.tab ? 1.5 : 1)
+            .scaleEffect(selectedTab == item.tab ? 1.25 : 1)
+            .foregroundStyle(selectedTab == item.tab ? .primary : .secondary)
+            .blendMode(selectedTab == item.tab ? .overlay : .normal)
             .overlay(
                 GeometryReader { geo in
                     Color.clear.preference(key: TabPreferenceKey.self, value: geo.size.width)
@@ -76,21 +79,21 @@ struct TabBar: View {
         // MARK: - Background
     private var background: some View {
         HStack {
-            if manager.selectedTab == .favorite { Spacer() }
-            if manager.selectedTab == .create { Spacer() }
-            if manager.selectedTab == .plan {
+            if selectedTab == .favorite { Spacer() }
+            if selectedTab == .create { Spacer() }
+            if selectedTab == .plan {
                 Spacer()
                 Spacer()
             }
             Circle()
                 .fill(color)
                 .frame(width: tabItemWidth)
-            if manager.selectedTab == .discover { Spacer() }
-            if manager.selectedTab == .create {
+            if selectedTab == .discover { Spacer() }
+            if selectedTab == .create {
                 Spacer()
                 Spacer()
             }
-            if manager.selectedTab == .plan { Spacer() }
+            if selectedTab == .plan { Spacer() }
         }
         .padding(.horizontal, 8)
     }
@@ -98,9 +101,9 @@ struct TabBar: View {
         // MARK: - Overlay
     private var overlay: some View {
         HStack {
-            if manager.selectedTab == .favorite { Spacer() }
-            if manager.selectedTab == .create { Spacer() }
-            if manager.selectedTab == .plan {
+            if selectedTab == .favorite { Spacer() }
+            if selectedTab == .create { Spacer() }
+            if selectedTab == .plan {
                 Spacer()
                 Spacer()
             }
@@ -110,22 +113,14 @@ struct TabBar: View {
                 .cornerRadius(3)
                 .frame(width: tabItemWidth)
                 .frame(maxHeight: .infinity, alignment: .top)
-            if manager.selectedTab == .discover { Spacer() }
-            if manager.selectedTab == .create {
+            if selectedTab == .discover { Spacer() }
+            if selectedTab == .create {
                 Spacer()
                 Spacer()
             }
-            if manager.selectedTab == .plan { Spacer() }
+            if selectedTab == .plan { Spacer() }
         }
         .padding(.horizontal, 8)
-    }
-    
-        // MARK: - Button Action
-    private func buttonAction(item: TabItem) {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            manager.selectedTab = item.tab
-            color = item.color
-        }
     }
     
 }

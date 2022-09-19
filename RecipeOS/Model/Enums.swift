@@ -17,7 +17,7 @@ enum RegisterType {
     case signUp
 }
 
-enum Tab {
+enum Tab: String {
     case discover
     case create
     case plan
