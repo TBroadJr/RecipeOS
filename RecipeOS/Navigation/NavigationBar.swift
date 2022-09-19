@@ -10,6 +10,8 @@ import SwiftUI
 struct NavigationBar: View {
     
         // MARK: -  Properties
+    @AppStorage("isLogged") var isLogged = false
+    @AppStorage("showRegister") var showRegister = false
     @State private var showSearch = false
     @State private var showAccount = false
     @Binding var hasScrolled: Bool
@@ -65,7 +67,15 @@ struct NavigationBar: View {
         // MARK: - Account Button
     private var accountButton: some View {
         Button {
-            showAccount = true
+            if isLogged {
+                withAnimation {
+                    showAccount = true
+                }
+            } else {
+                withAnimation {
+                    showRegister = true
+                }
+            }
         } label: {
             Image("Avatar Default")
                 .resizable()

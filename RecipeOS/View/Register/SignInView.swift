@@ -10,6 +10,7 @@ import SwiftUI
 struct SignInView: View {
     
         // MARK: - Properties
+    @AppStorage("isLogged") var isLogged = false
     @EnvironmentObject var manager: DataManager
     @FocusState private var focusedField: Field?
     @State private var email = ""
@@ -116,7 +117,7 @@ struct SignInView: View {
         // MARK: - Sign In Button
     private var signInButton: some View {
         Button {
-            // handle sign in
+            isLogged = true
         } label: {
             Text("Sign in")
                 .frame(maxWidth: .infinity)
@@ -163,7 +164,6 @@ struct SignInView: View {
             appear[2] = true
         }
     }
-    
     
 }
 
