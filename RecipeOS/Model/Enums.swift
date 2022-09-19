@@ -16,3 +16,10 @@ enum RegisterType {
     case signIn
     case signUp
 }
+
+enum Tab {
+    case discover
+    case create
+    case plan
+    case favorite
+}

@@ -9,4 +9,5 @@ import Foundation
 
 class DataManager: ObservableObject {
     @Published var registerType: RegisterType = .signIn
+    @Published var selectedTab: Tab = .discover
 }
