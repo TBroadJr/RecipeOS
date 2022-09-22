@@ -36,6 +36,9 @@ struct ContentView: View {
                 .frame(height: 88)
         }
         .dynamicTypeSize(.large ... .xxLarge)
+        .task {
+            //await manager.fetchRecipe()
+        }
     }
 }
 
