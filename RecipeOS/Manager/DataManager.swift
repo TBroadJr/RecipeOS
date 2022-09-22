@@ -6,9 +6,20 @@
 //
 
 import Foundation
+import CoreData
 
 class DataManager: ObservableObject {
     @Published var registerType: RegisterType = .signIn
+    
+    let container = NSPersistentContainer(name: "RecipeModel")
+    
+    init() {
+        container.loadPersistentStores { description, error in
+            print(description)
+        }
+        
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+    }
     
         // MARK: - Recipe API Request
     func fetchRecipe() async {

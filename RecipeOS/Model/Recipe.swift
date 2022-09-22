@@ -12,10 +12,10 @@ struct RecipeInfo: Codable {
 }
 
 struct Hits: Codable {
-    var recipe: Recipe
+    var recipe: RecipeData
 }
 
-struct Recipe: Codable {
+struct RecipeData: Codable {
     var label: String
     var images: RecipeImage
     var url: URL

@@ -13,7 +13,7 @@ struct RecipeOSApp: App {
     var body: some Scene {
         WindowGroup {
           ContentView()
-            .environmentObject(manager)
+                .environmentObject(manager).environment(\.managedObjectContext, manager.container.viewContext)
         }
     }
 }
