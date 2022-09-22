@@ -16,8 +16,8 @@ class DataManager: ObservableObject {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            guard let response = String(data: data, encoding: .utf8) else { return }
-            print(response)
+            let recipeData = try JSONDecoder().decode(RecipeInfo.self, from: data)
+            print(recipeData.hits.count)
         } catch {
             print("Error")
         }
