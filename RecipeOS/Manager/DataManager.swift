@@ -24,15 +24,29 @@ class DataManager: ObservableObject {
         // MARK: - Recipe API Request
     func fetchRecipe() async {
         guard let url = URL(string: "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d692ee4d&app_key=%208d01605663aed27356a82231a49dbd04") else { return }
-        
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let recipeData = try JSONDecoder().decode(RecipeInfo.self, from: data)
-            print(recipeData.hits.count)
+            addToCoreData(recipeInfo: recipeData)
         } catch {
-            print("Error")
+            print("Error: \(error.localizedDescription)")
         }
-                
-                
     }
+    
+        // MARK: - Add To Core Data
+    private func addToCoreData(recipeInfo: RecipeInfo) {
+        for recipe in recipeInfo.hits {
+            let newRecipe = Recipe(context: container.viewContext)
+            newRecipe.label = recipe.recipe.label
+            newRecipe.calories = recipe.recipe.calories
+            newRecipe.cookingTime = recipe.recipe.totalTime
+            newRecipe.sourceURL = recipe.recipe.url
+            newRecipe.image = recipe.recipe.images.regular.url
+            
+            let joinedIngredients = recipe.recipe.ingredientLines.joined(separator: "$")
+            newRecipe.ingredients = joinedIngredients
+        }
+        try? container.viewContext.save()
+    }
+    
 }
