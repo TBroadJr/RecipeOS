@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SignUpView: View {
     
@@ -117,7 +118,7 @@ struct SignUpView: View {
         // MARK: - Sign Up Button
     private var signUpButton: some View {
         Button {
-            isLogged = true
+            signUp()
         } label: {
             Text("Create an Account")
                 .frame(maxWidth: .infinity)
@@ -173,6 +174,16 @@ struct SignUpView: View {
         }
     }
     
+        // MARK: - Sign Up func
+    private func signUp() {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                isLogged = true
+            }
+        }
+    }
     
 }
 
