@@ -31,11 +31,11 @@
 		F69ED81128D6B87900AE5A82 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED81028D6B87900AE5A82 /* PreferenceKeys.swift */; };
 		F69ED81328D6BA1A00AE5A82 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED81228D6BA1A00AE5A82 /* Style.swift */; };
 		F69ED81528D6BB1000AE5A82 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69ED81428D6BB1000AE5A82 /* SignUpView.swift */; };
-		F6ABB5E328DCD0D10057FA35 /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB5E128DCD0D10057FA35 /* Recipe+CoreDataClass.swift */; };
-		F6ABB5E428DCD0D10057FA35 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB5E228DCD0D10057FA35 /* Recipe+CoreDataProperties.swift */; };
 		F6ABB5EE28E1F94D0057FA35 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F6ABB5ED28E1F94D0057FA35 /* FirebaseAuth */; };
 		F6ABB5F028E1F94D0057FA35 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F6ABB5EF28E1F94D0057FA35 /* FirebaseFirestore */; };
 		F6ABB5F228E1FDEE0057FA35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6ABB5F128E1FDEE0057FA35 /* GoogleService-Info.plist */; };
+		F6ABB60128E36FDA0057FA35 /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB5FF28E36FDA0057FA35 /* Recipe+CoreDataClass.swift */; };
+		F6ABB60228E36FDA0057FA35 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB60028E36FDA0057FA35 /* Recipe+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,9 +64,9 @@
 		F69ED81028D6B87900AE5A82 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		F69ED81228D6BA1A00AE5A82 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		F69ED81428D6BB1000AE5A82 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		F6ABB5E128DCD0D10057FA35 /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F6ABB5E228DCD0D10057FA35 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F6ABB5F128E1FDEE0057FA35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6ABB5FF28E36FDA0057FA35 /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6ABB60028E36FDA0057FA35 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 		F69DB91C28DCC5B30029B686 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F6ABB5E128DCD0D10057FA35 /* Recipe+CoreDataClass.swift */,
-				F6ABB5E228DCD0D10057FA35 /* Recipe+CoreDataProperties.swift */,
+				F6ABB5FF28E36FDA0057FA35 /* Recipe+CoreDataClass.swift */,
+				F6ABB60028E36FDA0057FA35 /* Recipe+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -309,9 +309,9 @@
 				F69ED81528D6BB1000AE5A82 /* SignUpView.swift in Sources */,
 				F69ED80428D6B06200AE5A82 /* SignInView.swift in Sources */,
 				F69ED80C28D6B15E00AE5A82 /* DataManager.swift in Sources */,
-				F6ABB5E328DCD0D10057FA35 /* Recipe+CoreDataClass.swift in Sources */,
+				F6ABB60128E36FDA0057FA35 /* Recipe+CoreDataClass.swift in Sources */,
 				F69BBB1D28D8B8C0007E41C0 /* Tab.swift in Sources */,
-				F6ABB5E428DCD0D10057FA35 /* Recipe+CoreDataProperties.swift in Sources */,
+				F6ABB60228E36FDA0057FA35 /* Recipe+CoreDataProperties.swift in Sources */,
 				F69ED7DD28D2105200AE5A82 /* NavigationBar.swift in Sources */,
 				F69ED81128D6B87900AE5A82 /* PreferenceKeys.swift in Sources */,
 			);

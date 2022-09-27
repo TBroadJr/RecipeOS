@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  RecipeOS
 //
-//  Created by Tornelius Broadwater, Jr on 9/22/22.
+//  Created by Tornelius Broadwater, Jr on 9/27/22.
 //
 //
 
@@ -22,6 +22,7 @@ extension Recipe {
     @NSManaged public var ingredients: String?
     @NSManaged public var label: String?
     @NSManaged public var sourceURL: URL?
+    @NSManaged public var id: UUID?
     
     public var unwrappedImage: URL {
         image ?? URL(string: "www.google.com")!
@@ -38,6 +39,10 @@ extension Recipe {
     
     public var unwrappedSourceURL: URL {
         sourceURL ?? URL(string: "www.google.com")!
+    }
+    
+    public var unwrappedID: UUID {
+        id ?? UUID()
     }
 
 }
