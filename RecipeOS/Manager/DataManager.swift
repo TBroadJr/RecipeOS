@@ -23,31 +23,34 @@ class DataManager: ObservableObject {
     
         // MARK: - Recipe API Request
     func fetchRecipe() async {
-        guard let url = URL(string: "https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=d692ee4d&app_key=%208d01605663aed27356a82231a49dbd04") else { return }
+        guard let url = URL(string: "https://api.spoonacular.com/recipes/random?apiKey=043de4e4b414423d84ec295540e8d111&number=10") else { return }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            let recipeData = try JSONDecoder().decode(RecipeInfo.self, from: data)
-            addToCoreData(recipeInfo: recipeData)
+            let recipeData = try JSONDecoder().decode(RecipeData.self, from: data)
+            addToCoreData(recipes: recipeData)
         } catch {
             print("Error: \(error.localizedDescription)")
         }
     }
     
-        // MARK: - Add To Core Data
-    private func addToCoreData(recipeInfo: RecipeInfo) {
-        for recipe in recipeInfo.hits {
+        // MARK: - Add to core data
+    func addToCoreData(recipes: RecipeData) {
+        for recipe in recipes.recipes {
             let newRecipe = Recipe(context: container.viewContext)
-            newRecipe.label = recipe.recipe.label
-            newRecipe.calories = recipe.recipe.calories
-            newRecipe.cookingTime = recipe.recipe.totalTime
-            newRecipe.sourceURL = recipe.recipe.url
-            newRecipe.image = recipe.recipe.images.regular.url
+            newRecipe.title = recipe.title
             newRecipe.id = UUID()
+            newRecipe.cookingTime = Int16(recipe.readyInMinutes)
+            newRecipe.image = recipe.image
+            newRecipe.servings = Int16(recipe.servings)
+            newRecipe.sourceURL = recipe.spoonacularSourceUrl
             
-            let joinedIngredients = recipe.recipe.ingredientLines.joined(separator: "$")
-            newRecipe.ingredients = joinedIngredients
+            var ingredients = [String]()
+            for i in recipe.extendedIngredients {
+                ingredients.append(i.original)
+            }
+            newRecipe.ingredients = ingredients.joined(separator: "$")
         }
         try? container.viewContext.save()
     }
-    
+
 }

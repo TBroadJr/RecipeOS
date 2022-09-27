@@ -15,7 +15,6 @@ struct ContentView: View {
     @EnvironmentObject var manager: DataManager
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
-    
         // MARK: - Body
     var body: some View {
         ZStack(alignment: .bottom) {

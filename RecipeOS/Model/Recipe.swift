@@ -7,34 +7,20 @@
 
 import Foundation
 
-struct RecipeInfo: Codable {
-    var hits: [Hits]
-}
-
-struct Hits: Codable {
-    var recipe: RecipeData
-}
-
 struct RecipeData: Codable {
-    var label: String
-    var images: RecipeImage
-    var url: URL
-    var ingredientLines: [String]
-    var calories: Double
-    var totalTime: Double
-}
-struct RecipeImage: Codable {
-    var thumbnail: ImageInfo
-    var small: ImageInfo
-    var regular: ImageInfo
-    
-    enum CodingKeys: String, CodingKey {
-        case thumbnail = "THUMBNAIL"
-        case small = "SMALL"
-        case regular = "REGULAR"
-    }
+    var recipes: [RecipeInfo]
 }
 
-struct ImageInfo: Codable {
-    var url: URL
+struct RecipeInfo: Codable {
+    var extendedIngredients: [ExtendedIngredients]
+    var title: String
+    var readyInMinutes: Int
+    var servings: Int
+    var image: URL
+    var spoonacularSourceUrl: URL
 }
+
+struct ExtendedIngredients: Codable {
+    var original: String
+}
+

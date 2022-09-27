@@ -16,34 +16,13 @@ extension Recipe {
         return NSFetchRequest<Recipe>(entityName: "Recipe")
     }
 
-    @NSManaged public var calories: Double
-    @NSManaged public var cookingTime: Double
+    @NSManaged public var title: String?
+    @NSManaged public var cookingTime: Int16
+    @NSManaged public var servings: Int16
+    @NSManaged public var sourceURL: URL?
     @NSManaged public var image: URL?
     @NSManaged public var ingredients: String?
-    @NSManaged public var label: String?
-    @NSManaged public var sourceURL: URL?
     @NSManaged public var id: UUID?
-    
-    public var unwrappedImage: URL {
-        image ?? URL(string: "www.google.com")!
-    }
-    
-    public var unwrappedIngredients: [String] {
-        let newIngredients = ingredients?.components(separatedBy: "$")
-        return newIngredients ?? [String]()
-    }
-    
-    public var unwrappedLabel: String {
-        label ?? "No Label"
-    }
-    
-    public var unwrappedSourceURL: URL {
-        sourceURL ?? URL(string: "www.google.com")!
-    }
-    
-    public var unwrappedID: UUID {
-        id ?? UUID()
-    }
 
 }
 
