@@ -42,6 +42,7 @@ class DataManager: ObservableObject {
             newRecipe.cookingTime = recipe.recipe.totalTime
             newRecipe.sourceURL = recipe.recipe.url
             newRecipe.image = recipe.recipe.images.regular.url
+            newRecipe.id = UUID()
             
             let joinedIngredients = recipe.recipe.ingredientLines.joined(separator: "$")
             newRecipe.ingredients = joinedIngredients
