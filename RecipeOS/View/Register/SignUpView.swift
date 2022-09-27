@@ -21,6 +21,9 @@ struct SignUpView: View {
     @State private var passwordY: CGFloat = 0
     @State private var circleColor: Color = .blue
     @State private var appear = [false, false, false]
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     
         // MARK: - Body
     var body: some View {
@@ -52,6 +55,11 @@ struct SignUpView: View {
         }
         .onAppear {
             appearAnimation()
+        }
+        .alert(alertTitle, isPresented: $showAlert) {
+            Button("Retry", role: .cancel) {}
+        } message: {
+            Text(alertMessage)
         }
     }
     
@@ -174,8 +182,34 @@ struct SignUpView: View {
         }
     }
     
+        // MARK: - Validate Password
+    private func isPasswordValid() -> Bool {
+        guard password.count >= 8 else {
+            showAlert = true
+            alertTitle = "Password Error"
+            alertMessage = "Password must contain at least 8 characters"
+            return false
+        }
+        
+        guard password.hasPrefix(" ") != true else {
+            showAlert = true
+            alertTitle = "Password Error"
+            alertMessage = "Password must not start with a space character"
+            return false
+        }
+        
+        guard password.hasSuffix(" ") != true else {
+            showAlert = true
+            alertTitle = "Password Error"
+            alertMessage = "Password must not end with a space character"
+            return false
+        }
+        return true
+    }
+    
         // MARK: - Sign Up func
     private func signUp() {
+        guard isPasswordValid() else { return }
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print(error.localizedDescription)
