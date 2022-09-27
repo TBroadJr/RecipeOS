@@ -57,7 +57,7 @@ struct SignUpView: View {
             appearAnimation()
         }
         .alert(alertTitle, isPresented: $showAlert) {
-            Button("Retry", role: .cancel) {}
+            Button("Retry", role: .cancel) { reset() }
         } message: {
             Text(alertMessage)
         }
@@ -217,6 +217,12 @@ struct SignUpView: View {
                 isLogged = true
             }
         }
+    }
+    
+        // MARK: - Reset
+    private func reset() {
+        email = ""
+        password = ""
     }
     
 }
