@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SignInView: View {
     
@@ -20,6 +21,9 @@ struct SignInView: View {
     @State private var passwordY: CGFloat = 0
     @State private var circleColor: Color = .blue
     @State private var appear = [false, false, false]
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     
         // MARK: - Body
     var body: some View {
@@ -51,6 +55,11 @@ struct SignInView: View {
         }
         .onAppear {
             appearAnimation()
+        }
+        .alert(alertTitle, isPresented: $showAlert) {
+            Button("Retry", role: .cancel) { }
+        } message: {
+            Text(alertMessage)
         }
     }
     
@@ -117,7 +126,7 @@ struct SignInView: View {
         // MARK: - Sign In Button
     private var signInButton: some View {
         Button {
-            isLogged = true
+            signIn()
         } label: {
             Text("Sign in")
                 .frame(maxWidth: .infinity)
@@ -163,6 +172,25 @@ struct SignInView: View {
         withAnimation(.spring().delay(0.3)) {
             appear[2] = true
         }
+    }
+    
+        // MARK: - SignIn
+    private func signIn() {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                showAlert = true
+                alertTitle = "Sign In Error"
+                alertMessage = error.localizedDescription
+            } else {
+                isLogged = true
+            }
+        }
+    }
+    
+        // MARK: - Reset
+    private func reset() {
+        email = ""
+        password = ""
     }
     
 }
