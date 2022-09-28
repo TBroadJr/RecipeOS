@@ -30,6 +30,7 @@ struct ContentView: View {
             
             if showRegister {
                 RegisterView()
+                    .zIndex(1)
             }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {

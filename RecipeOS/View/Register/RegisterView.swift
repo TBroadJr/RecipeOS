@@ -112,9 +112,10 @@ struct RegisterView: View {
         withAnimation {
             isDismissed = true
         }
-        withAnimation(.linear.delay(0.3)) {
+        withAnimation(.linear.delay(0.1)) {
             showRegister = false
         }
+        
     }
     
         // MARK: - Animate

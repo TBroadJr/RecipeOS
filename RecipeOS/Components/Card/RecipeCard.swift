@@ -18,6 +18,8 @@ struct RecipeCard: View {
             .padding()
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .strokeStyle(cornerRadius: 20)
+        .shadow(color: Color("Shadow").opacity(0.3), radius: 20, x: 0, y: 10)
     }
         
         // MARK: - Recipe Image
