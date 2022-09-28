@@ -16,23 +16,35 @@ struct RecipeCard: View {
                 RecipeCookingView()
             }
             .padding()
-            .padding(.bottom, 12)
         }
-        .background(.ultraThinMaterial)
-        .cornerRadius(12)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
-    
+        
         // MARK: - Recipe Image
     private var recipeImage: some View {
-        ImageLoader(url: URL(string: "https://spoonacular.com/recipeImages/638257-556x370.jpg")!)
-            .scaledToFit()
+    ImageLoader(url: URL(string: "https://spoonacular.com/recipeImages/638257-556x370.jpg")!) { phase in
+        switch phase {
+        case .empty:
+            ProgressView()
+        case .success(let image):
+            image
+                .resizable()
+                .scaledToFit()
+                .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        case .failure(_):
+            Color.gray
+        @unknown default:
+            EmptyView()
+        }
     }
+}
     
         // MARK: - Recipe Title
     private var recipeTitle: some View {
         Text("Fried Chicken")
             .font(.title.bold())
     }
+    
 }
 
 struct RecipeCookingView: View {
