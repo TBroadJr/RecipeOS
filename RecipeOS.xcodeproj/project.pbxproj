@@ -36,6 +36,8 @@
 		F6ABB5F228E1FDEE0057FA35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6ABB5F128E1FDEE0057FA35 /* GoogleService-Info.plist */; };
 		F6ABB61628E39E400057FA35 /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61428E39E400057FA35 /* Recipe+CoreDataClass.swift */; };
 		F6ABB61728E39E400057FA35 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61528E39E400057FA35 /* Recipe+CoreDataProperties.swift */; };
+		F6ABB61A28E47DA50057FA35 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61928E47DA50057FA35 /* ImageLoader.swift */; };
+		F6ABB61D28E47EF50057FA35 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		F6ABB5F128E1FDEE0057FA35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6ABB61428E39E400057FA35 /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6ABB61528E39E400057FA35 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6ABB61928E47DA50057FA35 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				F69ED80A28D6B14600AE5A82 /* Manager */,
 				F69ED7D828D2101300AE5A82 /* Navigation */,
 				F69ED7DA28D2102800AE5A82 /* View */,
+				F6ABB61828E47D620057FA35 /* Components */,
 				F69ED80728D6B0DA00AE5A82 /* Model */,
 				F69ED7DE28D2119400AE5A82 /* Styles */,
 				F69ED7CE28D20E5800AE5A82 /* Assets.xcassets */,
@@ -212,6 +217,31 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		F6ABB61828E47D620057FA35 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F6ABB61B28E47EDE0057FA35 /* Card */,
+				F6ABB61E28E47EFB0057FA35 /* ImageLoader */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F6ABB61B28E47EDE0057FA35 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		F6ABB61E28E47EFB0057FA35 /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				F6ABB61928E47DA50057FA35 /* ImageLoader.swift */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -303,10 +333,12 @@
 				F69ED81328D6BA1A00AE5A82 /* Style.swift in Sources */,
 				F69BBB1B28D8A498007E41C0 /* Animations.swift in Sources */,
 				F69ED7CD28D20E5100AE5A82 /* ContentView.swift in Sources */,
+				F6ABB61D28E47EF50057FA35 /* RecipeCard.swift in Sources */,
 				F69DB91B28DCA8F90029B686 /* RecipeModel.xcdatamodeld in Sources */,
 				F69BBB2C28D8C58B007E41C0 /* CreateView.swift in Sources */,
 				F69ED7CB28D20E5100AE5A82 /* RecipeOSApp.swift in Sources */,
 				F69ED81528D6BB1000AE5A82 /* SignUpView.swift in Sources */,
+				F6ABB61A28E47DA50057FA35 /* ImageLoader.swift in Sources */,
 				F69ED80428D6B06200AE5A82 /* SignInView.swift in Sources */,
 				F69ED80C28D6B15E00AE5A82 /* DataManager.swift in Sources */,
 				F6ABB61628E39E400057FA35 /* Recipe+CoreDataClass.swift in Sources */,
