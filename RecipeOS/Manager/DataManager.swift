@@ -10,6 +10,7 @@ import CoreData
 
 class DataManager: ObservableObject {
     @Published var registerType: RegisterType = .signIn
+    @Published var showDetail = false
     
     let container = NSPersistentContainer(name: "RecipeModel")
     

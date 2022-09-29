@@ -27,6 +27,7 @@ struct ContentView: View {
             
             TabBar()
                 .offset(y: showRegister ? 200 : 0)
+                .offset(y: manager.showDetail ? 200 : 0)
             
             if showRegister {
                 RegisterView()
