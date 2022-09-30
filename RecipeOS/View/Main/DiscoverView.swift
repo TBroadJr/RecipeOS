@@ -37,6 +37,11 @@ struct DiscoverView: View {
                 }
             }
         }
+        .task {
+            if recipes.count == 0 {
+                await manager.fetchRecipe()
+            }
+        }
     }
     
         // MARK: - Screen Background
