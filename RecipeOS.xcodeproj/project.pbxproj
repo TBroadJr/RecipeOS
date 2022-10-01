@@ -40,6 +40,7 @@
 		F6ABB61D28E47EF50057FA35 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */; };
 		F6ABB62028E6018A0057FA35 /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61F28E601890057FA35 /* RecipeDetail.swift */; };
 		F6ABB62328E614600057FA35 /* RecipeCookingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB62228E614600057FA35 /* RecipeCookingItem.swift */; };
+		F6DEE48E28E87F5900C6955A /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DEE48D28E87F5900C6955A /* BlobView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		F6ABB61F28E601890057FA35 /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 		F6ABB62228E614600057FA35 /* RecipeCookingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCookingItem.swift; sourceTree = "<group>"; };
+		F6DEE48D28E87F5900C6955A /* BlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F664E31C28E7A2040092F88B /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				F6DEE48D28E87F5900C6955A /* BlobView.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
 		F69DB91C28DCC5B30029B686 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +237,7 @@
 			children = (
 				F6ABB61B28E47EDE0057FA35 /* Items */,
 				F6ABB61E28E47EFB0057FA35 /* ImageLoader */,
+				F664E31C28E7A2040092F88B /* Graphics */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -358,6 +369,7 @@
 				F69ED80428D6B06200AE5A82 /* SignInView.swift in Sources */,
 				F69ED80C28D6B15E00AE5A82 /* DataManager.swift in Sources */,
 				F6ABB61628E39E400057FA35 /* Recipe+CoreDataClass.swift in Sources */,
+				F6DEE48E28E87F5900C6955A /* BlobView.swift in Sources */,
 				F69BBB1D28D8B8C0007E41C0 /* Tab.swift in Sources */,
 				F6ABB61728E39E400057FA35 /* Recipe+CoreDataProperties.swift in Sources */,
 				F69ED7DD28D2105200AE5A82 /* NavigationBar.swift in Sources */,
