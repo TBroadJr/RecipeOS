@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CreateView: View {
+    
+    @State private var avatarImage = UIImage(named: "Avatar Default")
+    
     var body: some View {
         Text("Create")
     }
