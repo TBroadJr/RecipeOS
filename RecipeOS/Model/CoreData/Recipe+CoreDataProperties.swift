@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  RecipeOS
 //
-//  Created by Tornelius Broadwater, Jr on 9/27/22.
+//  Created by Tornelius Broadwater, Jr on 10/8/22.
 //
 //
 
@@ -11,18 +11,23 @@ import CoreData
 
 
 extension Recipe {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Recipe> {
         return NSFetchRequest<Recipe>(entityName: "Recipe")
     }
-
-    @NSManaged public var title: String?
+    
     @NSManaged public var cookingTime: Int16
-    @NSManaged public var servings: Int16
-    @NSManaged public var sourceURL: URL?
+    @NSManaged public var id: UUID?
     @NSManaged public var image: URL?
     @NSManaged public var ingredients: String?
-    @NSManaged public var id: UUID?
+    @NSManaged public var servings: Int16
+    @NSManaged public var sourceURL: URL?
+    @NSManaged public var title: String?
+    @NSManaged public var isCreated: Bool
+    
+    public var created: Bool {
+        isCreated
+    }
     
     public var unwrappedTitle: String {
         title ?? "No Title"

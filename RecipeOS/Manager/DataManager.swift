@@ -44,6 +44,7 @@ class DataManager: ObservableObject {
             newRecipe.image = recipe.image
             newRecipe.servings = Int16(recipe.servings)
             newRecipe.sourceURL = recipe.spoonacularSourceUrl
+            newRecipe.isCreated = false
             
             var ingredients = [String]()
             for i in recipe.extendedIngredients {
