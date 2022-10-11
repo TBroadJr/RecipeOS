@@ -30,7 +30,7 @@ struct RecipeCard: View {
         
         // MARK: - Recipe Image
     private var recipeImage: some View {
-        ImageLoader(url: recipe.unwrappedImage) { phase in
+        ImageLoader(url: recipe.unwrappedImageURL) { phase in
             switch phase {
             case .empty:
                 ProgressView()

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
     
-    @Binding var avatarImage: UIImage?
+    @Binding var recipeImage: UIImage?
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -38,7 +38,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                     // show error
                     return
                 }
-                photoPicker.avatarImage = compressedImage
+                photoPicker.recipeImage = compressedImage
             } else {
                 // return error
             }

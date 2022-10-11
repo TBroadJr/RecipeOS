@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  RecipeOS
 //
-//  Created by Tornelius Broadwater, Jr on 10/8/22.
+//  Created by Tornelius Broadwater, Jr on 10/10/22.
 //
 //
 
@@ -11,42 +11,32 @@ import CoreData
 
 
 extension Recipe {
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Recipe> {
         return NSFetchRequest<Recipe>(entityName: "Recipe")
     }
-    
+
     @NSManaged public var cookingTime: Int16
     @NSManaged public var id: UUID?
-    @NSManaged public var image: URL?
+    @NSManaged public var imageURL: URL?
     @NSManaged public var ingredients: String?
     @NSManaged public var servings: Int16
     @NSManaged public var sourceURL: URL?
     @NSManaged public var title: String?
     @NSManaged public var isCreated: Bool
-    
-    public var created: Bool {
-        isCreated
-    }
-    
-    public var unwrappedTitle: String {
-        title ?? "No Title"
-    }
-    
+    @NSManaged public var imageData: Data?
+    @NSManaged public var instructions: String?
+
     public var cookingTimeInt: Int {
         Int(cookingTime)
     }
     
-    public var servingsInt: Int {
-        Int(servings)
+    public var unwrappedID: UUID {
+        id ?? UUID()
     }
     
-    public var unwrappedSourceURL: URL {
-        sourceURL ?? URL(string: "www.google.com")!
-    }
-    
-    public var unwrappedImage: URL {
-        image ?? URL(string: "www.google.com")!
+    public var unwrappedImageURL: URL {
+        imageURL ?? URL(string: "www.google.com")!
     }
     
     public var unwrappedIngredients: [String] {
@@ -57,9 +47,34 @@ extension Recipe {
         array = ingredientsString.components(separatedBy: "$")
         return array
     }
-
-    public var unwrappedID: UUID {
-        id ?? UUID()
+    
+    public var servingsInt: Int {
+        Int(servings)
+    }
+    
+    public var unwrappedSourceURL: URL {
+        sourceURL ?? URL(string: "www.google.com")!
+    }
+    
+    public var unwrappedTitle: String {
+        title ?? "No Title"
+    }
+    
+    public var created: Bool {
+        isCreated
+    }
+    
+    public var unwrappedImageData: Data {
+        imageData ?? Data()
+    }
+    
+    public var unwrappedInstructions: [String] {
+        var array = [String]()
+        guard let instructionsString = instructions else {
+            return array
+        }
+        array = instructionsString.components(separatedBy: "$")
+        return array
     }
 }
 

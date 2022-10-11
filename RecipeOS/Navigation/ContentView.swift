@@ -13,6 +13,9 @@ struct ContentView: View {
     @AppStorage("selectedTab") var selectedTab: Tab = .discover
     @AppStorage("showRegister") var showRegister = false
     @EnvironmentObject var manager: DataManager
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
+
     
         // MARK: - Body
     var body: some View {
@@ -38,6 +41,12 @@ struct ContentView: View {
                 .frame(height: 88)
         }
         .dynamicTypeSize(.large ... .xxLarge)
+//        .task {
+//            for i in recipes {
+//                moc.delete(i)
+//                try? moc.save()
+//            }
+//        }
     }
 }
 

@@ -77,7 +77,7 @@ struct SearchView: View {
                     selectedIndex = UUID()
                 } label: {
                     HStack(alignment: .top, spacing: 12) {
-                        ImageLoader(url: recipe.unwrappedImage) { phase in
+                        ImageLoader(url: recipe.unwrappedImageURL) { phase in
                             switch phase {
                             case .empty:
                                 ProgressView()

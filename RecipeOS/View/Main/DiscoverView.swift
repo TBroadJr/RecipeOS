@@ -59,13 +59,15 @@ struct DiscoverView: View {
                     recipeCards
                 } else {
                     ForEach(recipes) { recipe in
-                        Rectangle()
-                            .fill(.white)
-                            .frame(height: 300)
-                            .cornerRadius(30)
-                            .shadow(color: Color("Shadow"), radius: 20, x: 0, y: 10)
-                            .opacity(0.3)
-                        .padding(.horizontal, 30)
+                        if recipe.isCreated {
+                            Rectangle()
+                                .fill(.white)
+                                .frame(height: 300)
+                                .cornerRadius(30)
+                                .shadow(color: Color("Shadow"), radius: 20, x: 0, y: 10)
+                                .opacity(0.3)
+                                .padding(.horizontal, 30)
+                        }
                     }
                 }
             }
@@ -103,16 +105,18 @@ struct DiscoverView: View {
         // MARK: - Recipe Cards
     private var recipeCards: some View {
         ForEach(recipes) { recipe in
-            RecipeCard(recipe: recipe, namespace: namespace)
-                .onTapGesture {
-                    withAnimation(.openCard) {
-                        show.toggle()
-                        manager.showDetail.toggle()
-                        showStatusBar = false
-                        selectedID = recipe.unwrappedID
-                        
+            if !recipe.isCreated {
+                RecipeCard(recipe: recipe, namespace: namespace)
+                    .onTapGesture {
+                        withAnimation(.openCard) {
+                            show.toggle()
+                            manager.showDetail.toggle()
+                            showStatusBar = false
+                            selectedID = recipe.unwrappedID
+                            
+                        }
                     }
-                }
+            }
         }
     }
     

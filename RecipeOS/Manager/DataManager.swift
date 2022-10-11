@@ -41,7 +41,7 @@ class DataManager: ObservableObject {
             newRecipe.title = recipe.title
             newRecipe.id = UUID()
             newRecipe.cookingTime = Int16(recipe.readyInMinutes)
-            newRecipe.image = recipe.image
+            newRecipe.imageURL = recipe.image
             newRecipe.servings = Int16(recipe.servings)
             newRecipe.sourceURL = recipe.spoonacularSourceUrl
             newRecipe.isCreated = false
@@ -54,5 +54,27 @@ class DataManager: ObservableObject {
         }
         try? container.viewContext.save()
     }
-
+    
+    func addCreatedToCoreData(recipe: CreatedRecipe) {
+        let newRecipe = Recipe(context: container.viewContext)
+        newRecipe.title = recipe.title
+        newRecipe.id = UUID()
+        newRecipe.cookingTime = Int16(recipe.cookingTime)
+        newRecipe.imageData = recipe.recipeImage
+        newRecipe.servings = Int16(recipe.servings)
+        newRecipe.isCreated = true
+        
+        var ingredients = [String]()
+        for i in recipe.ingredients {
+            ingredients.append(i)
+        }
+        newRecipe.ingredients = ingredients.joined(separator: "$")
+        
+        var instructions = [String]()
+        for i in recipe.instructions {
+            instructions.append(i)
+        }
+        newRecipe.instructions = instructions.joined(separator: "$")
+        try? container.viewContext.save()
+    }
 }

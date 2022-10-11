@@ -24,3 +24,12 @@ struct ExtendedIngredients: Codable {
     var original: String
 }
 
+
+struct CreatedRecipe: Codable {
+    var title: String
+    var recipeImage: Data
+    var ingredients: [String]
+    var instructions: [String]
+    var servings: Int
+    var cookingTime: Int
+}

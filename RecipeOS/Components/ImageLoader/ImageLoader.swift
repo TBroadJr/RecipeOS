@@ -34,7 +34,8 @@ struct ImageLoader<Content>: View where Content: View {
             let _ = print("Request: \(url.absoluteString)")
             AsyncImage(
                 url: url,
-                scale: scale, transaction: transaction
+                scale: scale,
+                transaction: transaction
             ) { phase in
                 cacheAndRender(phase: phase)
             }
