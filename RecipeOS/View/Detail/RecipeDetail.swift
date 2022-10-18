@@ -11,6 +11,7 @@ struct RecipeDetail: View {
     
     // MARK: - Properties
     @EnvironmentObject var manager: DataManager
+    @Environment(\.managedObjectContext) var moc
     @State private var viewState: CGSize = .zero
     @State private var isDraggable = true
     @State private var showSection = false
@@ -19,8 +20,9 @@ struct RecipeDetail: View {
     @Binding var show: Bool
     var namespace: Namespace.ID
     var recipe: Recipe
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     
-    
+    // MARK: - Body
     var body: some View {
         ZStack {
             scrollView
@@ -36,19 +38,33 @@ struct RecipeDetail: View {
             fadeOut()
         }
     }
+}
+
+// MARK: - RecipeDetail Extension
+private extension RecipeDetail {
     
-        // MARK: - Background
+    // MARK: - Background
     private var background: some View {
         Color("Background").ignoresSafeArea()
     }
     
-        // MARK: - Scroll View
+    // MARK: - Scroll View
     private var scrollView: some View {
         ScrollView {
             recipeImage
             recipeInfo
             ingredientsTitle
             ingredients
+            if recipe.isCreated  {
+                deleteRecipeButton
+            } else {
+                if recipe.isFavorited {
+                    removeFavoriteButton
+                } else {
+                    addFavoriteButton
+                }
+            }
+            
         }
         .onAppear { manager.showDetail = true }
         .onDisappear { manager.showDetail = false }
@@ -57,7 +73,7 @@ struct RecipeDetail: View {
         .background(.ultraThinMaterial)
     }
     
-        // MARK: - Cover
+    // MARK: - Recipe Image
     private var recipeImage: some View {
         ImageLoader(url: recipe.unwrappedImageURL) { phase in
             switch phase {
@@ -79,7 +95,7 @@ struct RecipeDetail: View {
         .padding(.horizontal, 20)
     }
     
-        // MARK: - Recipe Info
+    // MARK: - Recipe Info
     private var recipeInfo: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(recipe.unwrappedTitle)
@@ -110,7 +126,7 @@ struct RecipeDetail: View {
         .opacity(appear[0] ? 1 : 0)
     }
     
-        // MARK: - Ingredients Title
+    // MARK: - Ingredients Title
     private var ingredientsTitle: some View {
         Text("Ingredients".uppercased())
             .font(.footnote.weight(.semibold))
@@ -120,7 +136,7 @@ struct RecipeDetail: View {
             .opacity(appear[1] ? 1 : 0)
     }
     
-        // MARK: - Ingredients
+    // MARK: - Ingredients
     private var ingredients: some View {
         VStack(spacing: 10) {
             ForEach(recipe.unwrappedIngredients, id: \.self) { ingredient in
@@ -136,12 +152,13 @@ struct RecipeDetail: View {
         .opacity(appear[2] ? 1 : 0)
     }
     
-        // MARK: - Xmark Button
+    // MARK: - Xmark Button
     private var xmarkButton: some View {
         Button {
             withAnimation(.closeCard) {
                 show.toggle()
                 manager.showDetail.toggle()
+                generator.impactOccurred()
             }
         } label: {
             Image(systemName: "xmark")
@@ -156,7 +173,52 @@ struct RecipeDetail: View {
         .opacity(appear[2] ? 1 : 0)
     }
     
-        // MARK: - Fade In Function
+    // MARK: - Add Favorite Button
+    private var addFavoriteButton: some View {
+        Button {
+            recipe.isFavorited = true
+            try? moc.save()
+        } label: {
+            Text("Add To Favorite")
+                .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal, 10)
+        .buttonStyle(.borderedProminent)
+        .opacity(appear[2] ? 1 : 0)
+    }
+    
+    // MARK: - Remove Favorite Button
+    private var removeFavoriteButton: some View {
+        Button {
+            recipe.isFavorited = false
+            try? moc.save()
+        } label: {
+            Text("Remove From Favorite")
+                .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal, 10)
+        .buttonStyle(.borderedProminent)
+        .opacity(appear[2] ? 1 : 0)
+    }
+    
+    // MARK: - Delete Recipe Button
+    private var deleteRecipeButton: some View {
+        Button {
+            deleteRecipe()
+        } label: {
+            Text("Delete")
+                .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal, 10)
+        .buttonStyle(.bordered)
+        .opacity(appear[2] ? 1 : 0)
+    }
+}
+
+// MARK: - RecipeDetail Functions Extension
+private extension RecipeDetail {
+    
+    // MARK: - Fade in Function
     private func fadeIn() {
         withAnimation(.easeOut.delay(0.3)) {
             appear[0] = true
@@ -169,23 +231,16 @@ struct RecipeDetail: View {
         }
     }
     
-        // MARK: - Fade Out Function
+    // MARK: - Fade out Function
     private func fadeOut() {
         appear[0] = false
         appear[1] = false
         appear[2] = false
     }
-}
-
-struct RecipeDetail_Previews: PreviewProvider {
-    @Namespace static var namespace
-    static var previews: some View {
-        Group {
-            RecipeDetail(show: .constant(true), namespace: namespace, recipe: Recipe())
-                .environmentObject(DataManager())
-            RecipeDetail(show: .constant(true), namespace: namespace, recipe: Recipe())
-                .preferredColorScheme(.dark)
-                .environmentObject(DataManager())
-        }
+    
+    // MARK: - Delete Recipe Function
+    private func deleteRecipe() {
+        moc.delete(recipe)
+        try? moc.save()
     }
 }

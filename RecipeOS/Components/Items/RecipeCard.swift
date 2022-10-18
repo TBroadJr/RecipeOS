@@ -9,11 +9,11 @@ import SwiftUI
 
 struct RecipeCard: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     var recipe: Recipe
     var namespace: Namespace.ID
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             recipeImage
@@ -25,10 +25,14 @@ struct RecipeCard: View {
         }
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
         .strokeStyle(cornerRadius: 30)
-        .shadow(color: Color("Shadow").opacity(0.3), radius: 20, x: 0, y: 10)
+        //.shadow(color: Color("Shadow").opacity(0.3), radius: 15, x: 0, y: 10)
     }
-        
-        // MARK: - Recipe Image
+}
+
+// MARK: - RecipeCard Extension
+private extension RecipeCard {
+    
+    // MARK: - Recipe Image
     private var recipeImage: some View {
         ImageLoader(url: recipe.unwrappedImageURL) { phase in
             switch phase {
@@ -49,20 +53,19 @@ struct RecipeCard: View {
         .matchedGeometryEffect(id: "image\(recipe.unwrappedID)", in: namespace)
     }
     
-        // MARK: - Recipe Title
+    // MARK: - Recipe Title
     private var recipeTitle: some View {
         Text(recipe.unwrappedTitle)
             .font(.title.bold())
+            .lineLimit(1)
     }
     
-        // MARK: - Recipe Cooking Item
+    // MARK: - Recipe Cooking Item
     private var recipeCookingItem: some View {
         RecipeCookingItem(amountServed: recipe.servingsInt, cookingTime: recipe.cookingTimeInt)
-
+        
     }
-    
 }
-
 
 struct RecipeCard_Previews: PreviewProvider {
     @Namespace static var namespace

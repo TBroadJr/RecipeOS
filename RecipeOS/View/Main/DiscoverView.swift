@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DiscoverView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @EnvironmentObject var manager: DataManager
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
     @Namespace var namespace
@@ -17,8 +17,9 @@ struct DiscoverView: View {
     @State private var show = false
     @State private var showStatusBar = false
     @State private var selectedID = UUID()
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         ZStack {
             screenBackground
@@ -37,21 +38,20 @@ struct DiscoverView: View {
                 }
             }
         }
-        .task {
-            if recipes.count == 0 {
-                await manager.fetchRecipe()
-            }
-        }
     }
+}
+
+// MARK: - DiscoverView Extension
+private extension DiscoverView {
     
-        // MARK: - Screen Background
-    private var screenBackground: some View {
+    // MARK: - Screen Background
+    var screenBackground: some View {
         Color("Background")
             .ignoresSafeArea()
     }
     
-        // MARK: - Scroll View
-    private var scrollView: some View {
+    // MARK: - Scroll View
+    var scrollView: some View {
         ScrollView {
             scrollDetection
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 300), spacing: 20)], spacing: 20) {
@@ -77,51 +77,52 @@ struct DiscoverView: View {
         .safeAreaInset(edge: .top, content: {
             Color.clear.frame(height: 70)
         })
-        .overlay(overlay)
+        .overlay(navigationBarOverlay)
     }
     
-        // MARK: - Scroll Detection
-    private var scrollDetection: some View {
+    // MARK: - Scroll Detection
+    var scrollDetection: some View {
         GeometryReader { geo in
             Color.clear.preference(key: ScrollPreferenceKey.self, value: geo.frame(in: .named("scroll")).minY)
-        }
-        .frame(height: 0)
-        .onPreferenceChange(ScrollPreferenceKey.self) { newValue in
-            withAnimation(.easeInOut) {
-                if newValue < 0 {
-                    hasScroll = true
-                } else {
-                    hasScroll = false
+                .frame(height: 0)
+                .onPreferenceChange(ScrollPreferenceKey.self) { newValue in
+                    withAnimation(.easeInOut) {
+                        if newValue < 0 {
+                            hasScroll = true
+                        } else {
+                            hasScroll = false
+                        }
+                    }
                 }
-            }
         }
     }
     
-        // MARK: - Overlay
-    private var overlay: some View {
+    // MARK: - NavigationBar Overlay
+    var navigationBarOverlay: some View {
         NavigationBar(hasScrolled: $hasScroll, title: "Discover")
     }
     
-        // MARK: - Recipe Cards
-    private var recipeCards: some View {
+    // MARK: - Recipe Cards
+    var recipeCards: some View {
         ForEach(recipes) { recipe in
             if !recipe.isCreated {
                 RecipeCard(recipe: recipe, namespace: namespace)
+                    .shadow(color: Color("Shadow").opacity(0.3), radius: 5, x: 0, y: 10)
                     .onTapGesture {
                         withAnimation(.openCard) {
                             show.toggle()
                             manager.showDetail.toggle()
                             showStatusBar = false
                             selectedID = recipe.unwrappedID
-                            
+                            generator.impactOccurred()
                         }
                     }
             }
         }
     }
     
-        // MARK: - Recipe Detail
-    private var recipeDetail: some View {
+    // MARK: - Recipe Detail
+    var recipeDetail: some View {
         ForEach(recipes) { recipe in
             if recipe.unwrappedID == selectedID {
                 RecipeDetail(show: $show, namespace: namespace, recipe: recipe)

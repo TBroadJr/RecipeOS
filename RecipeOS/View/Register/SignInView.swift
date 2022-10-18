@@ -10,7 +10,7 @@ import Firebase
 
 struct SignInView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @AppStorage("isLogged") var isLogged = false
     @EnvironmentObject var manager: DataManager
     @FocusState private var focusedField: Field?
@@ -25,7 +25,7 @@ struct SignInView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             signInText
@@ -62,8 +62,12 @@ struct SignInView: View {
             Text(alertMessage)
         }
     }
+}
+
+// MARK: - SignInView Extension
+private extension SignInView {
     
-        // MARK: - Sign In Text
+    // MARK: - Sign In Text
     private var signInText: some View {
         Text("Sign in")
             .font(.largeTitle.bold())
@@ -71,15 +75,15 @@ struct SignInView: View {
             .offset(y: appear[0] ? 0 : 20)
     }
     
-        // MARK: - Body Text
+    // MARK: - Body Text
     private var bodyText: some View {
-        Text("Gain access to 100's of recipes and contribute your own with others")
+        Text("Gain access to 100's of recipes and create your own")
             .font(.headline)
             .opacity(appear[1] ? 1 : 0)
             .offset(y: appear[1] ? 0 : 20)
     }
     
-        // MARK: - Inputs
+    // MARK: - Inputs
     private var inputs: some View {
         Group {
             emailField
@@ -92,7 +96,7 @@ struct SignInView: View {
         .offset(y: appear[2] ? 0 : 20)
     }
     
-        // MARK: - Email Field
+    // MARK: - Email Field
     private var emailField: some View {
         TextField("Email", text: $email)
             .inputStyle(icon: "mail")
@@ -109,7 +113,7 @@ struct SignInView: View {
             }
     }
     
-        // MARK: - Password Field
+    // MARK: - Password Field
     private var passwordField: some View {
         SecureField("Password", text: $password)
             .inputStyle(icon: "lock")
@@ -123,7 +127,7 @@ struct SignInView: View {
         
     }
     
-        // MARK: - Sign In Button
+    // MARK: - Sign In Button
     private var signInButton: some View {
         Button {
             signIn()
@@ -139,7 +143,7 @@ struct SignInView: View {
         .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
     }
     
-        // MARK: - Bottom Text
+    // MARK: - Bottom Text
     private var bottomText: some View {
         HStack {
             Text("No account yet?")
@@ -154,14 +158,18 @@ struct SignInView: View {
         .accentColor(.secondary)
     }
     
-        // MARK: - Geometry
+    // MARK: - Geometry
     private var geometry: some View {
         GeometryReader { geo in
             Color.clear.preference(key: CirclePreferenceKey.self, value: geo.frame(in: .named("container")).minY)
         }
     }
+}
+
+// MARK: - SignInView Functions Extension
+private extension SignInView {
     
-        // MARK: - Appear Animation func
+    // MARK: - Appear Animation Function
     private func appearAnimation() {
         withAnimation(.spring().delay(0.1)) {
             appear[0] = true
@@ -174,7 +182,7 @@ struct SignInView: View {
         }
     }
     
-        // MARK: - SignIn
+    // MARK: - SignIn Function
     private func signIn() {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -187,12 +195,11 @@ struct SignInView: View {
         }
     }
     
-        // MARK: - Reset
+    // MARK: - Reset Function
     private func reset() {
         email = ""
         password = ""
     }
-    
 }
 
 struct SignInView_Previews: PreviewProvider {

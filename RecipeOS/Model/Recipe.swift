@@ -33,3 +33,21 @@ struct CreatedRecipe: Codable {
     var servings: Int
     var cookingTime: Int
 }
+
+struct DatabaseRecipe: Codable {
+    var title: String
+    var imageData: Data?
+    var ingredients: [String]
+    var instructions: [String]
+    var servings: Int
+    var cookingTime: Int
+    var isCreated: Bool
+    var isFavorited: Bool
+    var id: UUID
+    var sourceURL: URL?
+    var imageURL: URL?
+}
+
+struct RecipeDataArray: Codable {
+    var recipeData: [DatabaseRecipe]
+}

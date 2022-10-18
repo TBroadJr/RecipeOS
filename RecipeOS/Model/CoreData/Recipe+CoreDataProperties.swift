@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  RecipeOS
 //
-//  Created by Tornelius Broadwater, Jr on 10/10/22.
+//  Created by Tornelius Broadwater, Jr on 10/17/22.
 //
 //
 
@@ -18,15 +18,16 @@ extension Recipe {
 
     @NSManaged public var cookingTime: Int16
     @NSManaged public var id: UUID?
+    @NSManaged public var imageData: Data?
     @NSManaged public var imageURL: URL?
     @NSManaged public var ingredients: String?
+    @NSManaged public var instructions: String?
+    @NSManaged public var isCreated: Bool
     @NSManaged public var servings: Int16
     @NSManaged public var sourceURL: URL?
     @NSManaged public var title: String?
-    @NSManaged public var isCreated: Bool
-    @NSManaged public var imageData: Data?
-    @NSManaged public var instructions: String?
-
+    @NSManaged public var isFavorited: Bool
+    
     public var cookingTimeInt: Int {
         Int(cookingTime)
     }
@@ -36,7 +37,7 @@ extension Recipe {
     }
     
     public var unwrappedImageURL: URL {
-        imageURL ?? URL(string: "www.google.com")!
+        imageURL ?? URL(string: "https://picsum.photos/200")!
     }
     
     public var unwrappedIngredients: [String] {
@@ -76,6 +77,7 @@ extension Recipe {
         array = instructionsString.components(separatedBy: "$")
         return array
     }
+
 }
 
 extension Recipe : Identifiable {

@@ -10,39 +10,38 @@ import Firebase
 
 struct AccountView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var manager: DataManager
     @AppStorage("isLogged") var isLogged = true
     @AppStorage("isLiteMode") var isLiteMode = false
 
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         NavigationView {
-            list
-        }
-    }
-    
-        // MARK: - List
-    private var list: some View {
-        List {
-            profile
-            menu
-            signOutButton
-        }
-        .navigationTitle("Account")
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done")
+            List {
+                profile
+                menu
+                signOutButton
+            }
+            .navigationTitle("Account")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
                 }
             }
         }
     }
+}
+
+// MARK: - AccountView Extension
+private extension AccountView {
     
-        // MARK: - Profile
+    // MARK: - Profile
     private var profile: some View {
         VStack(spacing: 8) {
             Image(systemName: "person.crop.circle.fill.badge.checkmark")
@@ -55,13 +54,13 @@ struct AccountView: View {
             Text("Tornelius Broadwater, Jr")
                 .font(.title.weight(.semibold))
                 .multilineTextAlignment(.center)
-
+            
         }
         .frame(maxWidth: .infinity)
         .padding()
     }
     
-        // MARK: - Menu
+    // MARK: - Menu
     private var menu: some View {
         Section {
             NavigationLink { FavoriteView() } label: {
@@ -72,9 +71,8 @@ struct AccountView: View {
         .listRowSeparatorTint(.blue)
         .listRowSeparator(.hidden)
     }
-        
     
-        // MARK: - Sign Out Button
+    // MARK: - Sign Out Button
     private var signOutButton: some View {
         Button {
             signOut()
@@ -85,15 +83,18 @@ struct AccountView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
         }
     }
+}
+
+// MARK: - AccountView Functions Extension
+private extension AccountView {
     
-        // MARK: - Sign Out Func
+    // MARK: - Sign Out Function
     private func signOut() {
         try? Auth.auth().signOut()
         isLogged = false
         isLiteMode = false
         dismiss()
     }
-    
 }
 
 struct AccountView_Previews: PreviewProvider {

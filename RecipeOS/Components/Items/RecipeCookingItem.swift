@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecipeCookingItem: View {
+    
+    // MARK: - Properties
     var amountServed: Int
     var cookingTime: Int
     
+    // MARK: - Body
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
             servings
@@ -19,8 +22,12 @@ struct RecipeCookingItem: View {
         .font(.footnote)
         .foregroundColor(.secondary)
     }
+}
+
+// MARK: - RecipeCookingItem Extension
+private extension RecipeCookingItem {
     
-        // MARK: - Serving
+    // MARK: - Serving
     private var servings: some View {
         HStack(alignment: .center, spacing: 2) {
             Image(systemName: "person.2")
@@ -28,7 +35,7 @@ struct RecipeCookingItem: View {
         }
     }
     
-        // MARK: - Time
+    // MARK: - Time
     private var time: some View {
         HStack(alignment: .center, spacing: 2) {
             Image(systemName: "clock")

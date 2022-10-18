@@ -67,6 +67,17 @@ struct InputStyle: ViewModifier {
     }
 }
 
+// MARK: - Headline Text
+struct HeadlineText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote.weight(.semibold))
+            .foregroundColor(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(20)
+    }
+}
+
 
 
     // MARK: - View Extension
@@ -79,6 +90,9 @@ extension View {
     }
     func inputStyle(icon: String) -> some View {
         self.modifier(InputStyle(icon: icon))
+    }
+    func headlineText() -> some View {
+        self.modifier(HeadlineText())
     }
 
 }

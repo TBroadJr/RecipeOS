@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct PlanView: View {
+    
+    // MARK: - Properties
+    
+    
+    // MARK: - Body
     var body: some View {
         Text("Plan")
     }

@@ -41,12 +41,16 @@ struct ContentView: View {
                 .frame(height: 88)
         }
         .dynamicTypeSize(.large ... .xxLarge)
-//        .task {
-//            for i in recipes {
-//                moc.delete(i)
+        .task {
+            if recipes.isEmpty {
+               await manager.getRecipeServer()
+            }
+            
+//            for recipe in recipes {
+//                moc.delete(recipe)
 //                try? moc.save()
 //            }
-//        }
+        }
     }
 }
 

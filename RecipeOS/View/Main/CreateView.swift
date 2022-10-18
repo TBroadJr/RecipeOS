@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @EnvironmentObject var manager: DataManager
     
     @State private var showImagePicker = false
@@ -30,7 +30,7 @@ struct CreateView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
         
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         NavigationView {
             List {
@@ -68,41 +68,45 @@ struct CreateView: View {
             }
         }
     }
+}
+
+// MARK: - CreateView Extension
+private extension CreateView {
     
-        // MARK: - Image Section
-    private var imageSection: some View {
-        Section("Add Image") {
-            Image(uiImage: recipeImage!)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 100, height: 150)
-                .padding(.vertical, 10)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .onTapGesture { showImagePicker = true }
-        }
+    // MARK: - Image Section
+    var imageSection: some View {
+    Section("Add Image") {
+        Image(uiImage: recipeImage!)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 100, height: 150)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .onTapGesture { showImagePicker = true }
     }
+}
     
-        // MARK: - Info Section
-    private var infoSection: some View {
-        Section("Add Info") {
-            TextField("Title", text: $recipeTitle)
-            
-            Picker("Servings", selection: $recipeServings) {
-                ForEach(0..<11) {
-                    Text("\($0)")
-                }
-            }
-            
-            Picker("Cooking Time", selection: $recipeCookingTime) {
-                ForEach(0..<501) {
-                    Text("\($0) min")
-                }
-            }
-        }
-    }
+    // MARK: - Info Section
+    var infoSection: some View {
+    Section("Add Info") {
+        TextField("Title", text: $recipeTitle)
         
-        // MARK: - Ingredient Section
-    private var ingredientSection: some View {
+        Picker("Servings", selection: $recipeServings) {
+            ForEach(0..<11) {
+                Text("\($0)")
+            }
+        }
+        
+        Picker("Cooking Time", selection: $recipeCookingTime) {
+            ForEach(0..<501) {
+                Text("\($0) min")
+            }
+        }
+    }
+}
+    
+    // MARK: - Ingredient Section
+    var ingredientSection: some View {
         Section("Ingredients") {
             ForEach(ingredients, id: \.self) { item in
                 Text(item)
@@ -121,8 +125,8 @@ struct CreateView: View {
         }
     }
     
-        // MARK: - Instruction Section
-    private var instructionSection: some View {
+    // MARK: - Instruction Section
+    var instructionSection: some View {
         Section("Instructions") {
             ForEach(instructions, id: \.self) { item in
                 Text(item)
@@ -141,8 +145,8 @@ struct CreateView: View {
         }
     }
     
-        // MARK: - Reset Button
-    private var resetButton: some View {
+    // MARK: - Reset Button
+    var resetButton: some View {
         Button {
             reset()
         } label: {
@@ -150,8 +154,8 @@ struct CreateView: View {
         }
     }
     
-        // MARK: - Create Button
-    private var createButton: some View {
+    // MARK: - Create Button
+    var createButton: some View {
         Button {
             createRecipe()
         } label: {
@@ -159,8 +163,13 @@ struct CreateView: View {
         }
     }
     
-        // MARK: - Reset
-    private func reset() {
+}
+
+// MARK: - CreateView Functions Extension
+private extension CreateView {
+    
+    // MARK: - Reset Function
+    func reset() {
         recipeTitle = ""
         ingredientTextField = ""
         instructionsTextField = ""
@@ -168,10 +177,11 @@ struct CreateView: View {
         recipeCookingTime = 0
         ingredients.removeAll()
         instructions.removeAll()
+        recipeImage = UIImage(systemName: "photo")
     }
     
-        // MARK: - Validate Ingredient
-    private func isIngredientValid(item: String) -> Bool {
+    // MARK: - Validate Ingredient Function
+    func isIngredientValid(item: String) -> Bool {
         guard !item.isEmpty else {
             alertTitle = "Ingredient Error"
             alertMessage = "Field is Empty"
@@ -184,14 +194,14 @@ struct CreateView: View {
             alertMessage = "Duplicate ingredients are not allowed"
             showErrorAlert = true
             ingredientTextField = ""
-
+            
             return false
         }
         return true
     }
     
-        // MARK: - Add Ingredient
-    private func addIngredient() {
+    // MARK: - Add Ingredient Function
+    func addIngredient() {
         let ingredientString = ingredientTextField.trimmingCharacters(in: .whitespacesAndNewlines)
         let uppercasedText = ingredientString.uppercased()
         guard isIngredientValid(item: uppercasedText) else { return }
@@ -199,8 +209,8 @@ struct CreateView: View {
         ingredientTextField = ""
     }
     
-        // MARK: - Validate Instruction
-    private func isInstructionValid(item: String) -> Bool {
+    // MARK: - Validate Instruction Function
+    func isInstructionValid(item: String) -> Bool {
         guard !item.isEmpty else {
             alertTitle = "Instruction Error"
             alertMessage = "Field is empty"
@@ -211,16 +221,16 @@ struct CreateView: View {
         return true
     }
     
-        // MARK: - Add Instruction
-    private func addInstruction() {
+    // MARK: - Add Instruction Function
+    func addInstruction() {
         let uppercasedText = instructionsTextField.uppercased()
         guard isInstructionValid(item: uppercasedText) else { return }
         instructions.append(uppercasedText)
         instructionsTextField = ""
     }
     
-        // MARK: - Create Recipe
-    private func createRecipe() {
+    // MARK: - Create Recipe Function
+    func createRecipe() {
         guard let imageData = recipeImage?.jpegData(compressionQuality: 1.0) else { return }
         let createdRecipe = CreatedRecipe(title: recipeTitle, recipeImage: imageData, ingredients: ingredients, instructions: instructions, servings: recipeServings, cookingTime: recipeCookingTime)
         manager.addCreatedToCoreData(recipe: createdRecipe)
@@ -228,6 +238,7 @@ struct CreateView: View {
         alertMessage = "Recipe Created!"
         showCreateAlert = true
     }
+    
 }
 
 struct CreateView_Previews: PreviewProvider {

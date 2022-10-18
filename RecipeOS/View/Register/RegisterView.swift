@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @AppStorage("isLogged") var isLogged = false
     @AppStorage("showRegister") var showRegister = true
     @EnvironmentObject var manager: DataManager
@@ -17,7 +17,7 @@ struct RegisterView: View {
     @State private var isDismissed = false
     @State private var appear = [false, false, false]
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         ZStack {
             background
@@ -33,14 +33,19 @@ struct RegisterView: View {
             }
         }
     }
-        // MARK: - Background
+}
+
+// MARK: - RegisterView Extension
+private extension RegisterView {
+    
+    // MARK: - Background
     private var background: some View {
         Color.clear
             .background(.ultraThinMaterial)
             .ignoresSafeArea()
     }
     
-        // MARK: - Display
+    // MARK: - Display
     private var display: some View {
         Group {
             switch manager.registerType {
@@ -63,7 +68,7 @@ struct RegisterView: View {
         
     }
     
-        // MARK: - Dismiss Button
+    // MARK: - Dismiss Button
     private var dismissButton: some View {
         Button {
             dismiss()
@@ -80,7 +85,7 @@ struct RegisterView: View {
         .offset(y: appear[1] ? 0 : -200)
     }
     
-        // MARK: - Background Blob
+    // MARK: - Background Blob
     private var backgroundBlob: some View {
         Image("Blob 1")
             .offset(x: 200, y: -100)
@@ -90,7 +95,7 @@ struct RegisterView: View {
             .allowsHitTesting(false)
     }
     
-        // MARK: - Drag Gesture
+    // MARK: - Drag Gesture
     private var drag: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -106,8 +111,12 @@ struct RegisterView: View {
                 }
             }
     }
+}
+
+// MARK: - RegisterView Functions Extension
+private extension RegisterView {
     
-        // MARK: - Dismiss
+    // MARK: - Dismiss Function
     private func dismiss() {
         withAnimation {
             isDismissed = true
@@ -118,7 +127,7 @@ struct RegisterView: View {
         
     }
     
-        // MARK: - Animate
+    // MARK: - Animate Function
     private func animate() {
         withAnimation(.easeOut) {
             appear[0] = true

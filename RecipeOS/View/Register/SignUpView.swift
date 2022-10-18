@@ -10,7 +10,7 @@ import Firebase
 
 struct SignUpView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @AppStorage("isLogged") var isLogged = false
     @EnvironmentObject var manager: DataManager
     @FocusState private var focusedField: Field?
@@ -25,7 +25,7 @@ struct SignUpView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             signUpText
@@ -62,8 +62,12 @@ struct SignUpView: View {
             Text(alertMessage)
         }
     }
+}
+
+// MARK: - SignUpView Extension
+private extension SignUpView {
     
-        // MARK: - Sign In Text
+    // MARK: - Sign In Text
     private var signUpText: some View {
         Text("Sign up")
             .font(.largeTitle.bold())
@@ -71,15 +75,15 @@ struct SignUpView: View {
             .offset(y: appear[0] ? 0 : 20)
     }
     
-        // MARK: - Body Text
+    // MARK: - Body Text
     private var bodyText: some View {
-        Text("Gain access to 100's of recipes and contribute your own with others")
+        Text("Gain access to 100's of recipes and create your own")
             .font(.headline)
             .opacity(appear[1] ? 1 : 0)
             .offset(y: appear[1] ? 0 : 20)
     }
     
-        // MARK: - Inputs
+    // MARK: - Inputs
     private var inputs: some View {
         Group {
             emailField
@@ -92,7 +96,7 @@ struct SignUpView: View {
         .offset(y: appear[2] ? 0 : 20)
     }
     
-        // MARK: - Email Field
+    // MARK: - Email Field
     private var emailField: some View {
         TextField("Email", text: $email)
             .inputStyle(icon: "mail")
@@ -109,7 +113,7 @@ struct SignUpView: View {
             }
     }
     
-        // MARK: - Password Field
+    // MARK: - Password Field
     private var passwordField: some View {
         SecureField("Password", text: $password)
             .inputStyle(icon: "lock")
@@ -123,7 +127,7 @@ struct SignUpView: View {
         
     }
     
-        // MARK: - Sign Up Button
+    // MARK: - Sign Up Button
     private var signUpButton: some View {
         Button {
             signUp()
@@ -139,7 +143,7 @@ struct SignUpView: View {
         .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
     }
     
-        // MARK: - Bottom Text
+    // MARK: - Bottom Text
     private var bottomText: some View {
         Group {
             Text("By clicking on ")
@@ -162,14 +166,18 @@ struct SignUpView: View {
         .accentColor(.secondary)
     }
     
-        // MARK: - Geometry
+    // MARK: - Geometry
     private var geometry: some View {
         GeometryReader { geo in
             Color.clear.preference(key: CirclePreferenceKey.self, value: geo.frame(in: .named("container")).minY)
         }
     }
+}
+
+// MARK: - SignUpView Functions Extension
+private extension SignUpView {
     
-        // MARK: - Appear Animation func
+    // MARK: - Appear Animation Function
     private func appearAnimation() {
         withAnimation(.spring().delay(0.1)) {
             appear[0] = true
@@ -182,7 +190,7 @@ struct SignUpView: View {
         }
     }
     
-        // MARK: - Validate Password
+    // MARK: - Validate Password Function
     private func isPasswordValid() -> Bool {
         guard password.count >= 8 else {
             showAlert = true
@@ -207,7 +215,7 @@ struct SignUpView: View {
         return true
     }
     
-        // MARK: - Sign Up func
+    // MARK: - Sign Up Function
     private func signUp() {
         guard isPasswordValid() else { return }
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -219,14 +227,13 @@ struct SignUpView: View {
         }
     }
     
-        // MARK: - Reset
+    // MARK: - Reset Function
     private func reset() {
         email = ""
         password = ""
     }
-    
 }
-
+ 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()

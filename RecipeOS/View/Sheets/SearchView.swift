@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @Environment(\.dismiss) var dismiss
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
     @Namespace var namespace
@@ -18,14 +18,18 @@ struct SearchView: View {
     @State private var selectedIndex = UUID()
     @State private var selectedRecipe: Recipe?
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         NavigationView {
             scrollView
         }
     }
-        
-        // MARK: - Scroll View
+}
+
+// MARK: - SearchView Extension
+private extension SearchView {
+    
+    // MARK: - Scroll View
     private var scrollView: some View {
         ScrollView {
             VStack {
@@ -67,7 +71,7 @@ struct SearchView: View {
         }
     }
     
-        // MARK: - Content
+    // MARK: - Content
     private var content: some View {
         ForEach(Array(recipes.enumerated()), id: \.offset) { index, recipe in
             if recipe.unwrappedTitle.contains(text) {
@@ -106,8 +110,6 @@ struct SearchView: View {
             }
         }
     }
-
-
 }
 
 struct SearchView_Previews: PreviewProvider {
