@@ -2,7 +2,7 @@
 //  Recipe+CoreDataProperties.swift
 //  RecipeOS
 //
-//  Created by Tornelius Broadwater, Jr on 10/17/22.
+//  Created by Tornelius Broadwater, Jr on 10/19/22.
 //
 //
 
@@ -23,10 +23,11 @@ extension Recipe {
     @NSManaged public var ingredients: String?
     @NSManaged public var instructions: String?
     @NSManaged public var isCreated: Bool
+    @NSManaged public var isFavorited: Bool
     @NSManaged public var servings: Int16
     @NSManaged public var sourceURL: URL?
     @NSManaged public var title: String?
-    @NSManaged public var isFavorited: Bool
+    @NSManaged public var cookDate: Date?
     
     public var cookingTimeInt: Int {
         Int(cookingTime)
@@ -76,6 +77,10 @@ extension Recipe {
         }
         array = instructionsString.components(separatedBy: "$")
         return array
+    }
+    
+    public var unwrappedCookDate: Date {
+        cookDate ?? Date()
     }
 
 }

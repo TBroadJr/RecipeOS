@@ -15,6 +15,7 @@ enum Field: Hashable {
 enum RegisterType {
     case signIn
     case signUp
+    case reauthenticate
 }
 
 enum Tab: String {
@@ -24,3 +25,7 @@ enum Tab: String {
     case favorite
 }
 
+enum CompletionResult {
+    case success
+    case failure
+}

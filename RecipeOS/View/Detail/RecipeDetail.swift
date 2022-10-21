@@ -56,6 +56,8 @@ private extension RecipeDetail {
             ingredientsTitle
             ingredients
             if recipe.isCreated  {
+                instructionsTitle
+                instructions
                 deleteRecipeButton
             } else {
                 if recipe.isFavorited {
@@ -102,15 +104,17 @@ private extension RecipeDetail {
                 .font(.title.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
             RecipeCookingItem(amountServed: recipe.servingsInt, cookingTime: recipe.cookingTimeInt)
-            Divider()
-            Link(destination: recipe.unwrappedSourceURL) {
-                HStack {
-                    Label("Recipe", systemImage: "book")
-                    Spacer()
-                    Image(systemName: "link")
-                        .foregroundColor(.secondary)
+            if !recipe.isCreated {
+                Divider()
+                Link(destination: recipe.unwrappedSourceURL) {
+                    HStack {
+                        Label("Recipe", systemImage: "book")
+                        Spacer()
+                        Image(systemName: "link")
+                            .foregroundColor(.secondary)
+                    }
+                    .accentColor(.primary)
                 }
-                .accentColor(.primary)
             }
         }
         .padding(20)
@@ -136,11 +140,37 @@ private extension RecipeDetail {
             .opacity(appear[1] ? 1 : 0)
     }
     
+    // MARK: - Ingredients Title
+    private var instructionsTitle: some View {
+        Text("Instructions".uppercased())
+            .font(.footnote.weight(.semibold))
+            .foregroundColor(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 20)
+            .opacity(appear[1] ? 1 : 0)
+    }
+    
     // MARK: - Ingredients
     private var ingredients: some View {
         VStack(spacing: 10) {
             ForEach(recipe.unwrappedIngredients, id: \.self) { ingredient in
                 Text(ingredient)
+                    .font(.headline.weight(.medium))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(20)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
+        .strokeStyle(cornerRadius: 30)
+        .padding(20)
+        .opacity(appear[2] ? 1 : 0)
+    }
+    
+    // MARK: - Instructions
+    private var instructions: some View {
+        VStack(spacing: 10) {
+            ForEach(recipe.unwrappedInstructions, id: \.self) { instruction in
+                Text(instruction)
                     .font(.headline.weight(.medium))
             }
             .frame(maxWidth: .infinity, alignment: .leading)

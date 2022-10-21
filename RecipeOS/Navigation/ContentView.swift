@@ -42,14 +42,22 @@ struct ContentView: View {
         }
         .dynamicTypeSize(.large ... .xxLarge)
         .task {
+            await getData()
+        }
+    }
+}
+
+// MARK: - ContentView Functions Extension
+private extension ContentView {
+    
+    // MARK: - Get Data
+    func getData() async {
+        if recipes.isEmpty {
+            await manager.getRecipeServer()
             if recipes.isEmpty {
-               await manager.getRecipeServer()
+                await manager.fetchRecipeAPI()
+                await manager.getRecipeServer()
             }
-            
-//            for recipe in recipes {
-//                moc.delete(recipe)
-//                try? moc.save()
-//            }
         }
     }
 }

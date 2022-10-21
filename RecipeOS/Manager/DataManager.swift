@@ -58,7 +58,8 @@ class DataManager: ObservableObject {
                 isFavorited: false,
                 id: UUID(),
                 sourceURL: recipe.spoonacularSourceUrl,
-                imageURL: recipe.image
+                imageURL: recipe.image,
+                cookDate: nil
             )
             recipes.append(newRecipe)
         }
@@ -98,6 +99,7 @@ class DataManager: ObservableObject {
             newRecipe.id = recipe.id
             newRecipe.sourceURL = recipe.sourceURL
             newRecipe.imageURL = recipe.imageURL
+            newRecipe.cookDate = nil
             
             var ingredients = [String]()
             for i in recipe.ingredients {
@@ -124,6 +126,10 @@ class DataManager: ObservableObject {
         newRecipe.imageData = recipe.recipeImage
         newRecipe.servings = Int16(recipe.servings)
         newRecipe.isCreated = true
+        newRecipe.isFavorited = false
+        newRecipe.cookDate = nil
+        newRecipe.imageURL = nil
+        newRecipe.sourceURL = nil
         
         var ingredients = [String]()
         for i in recipe.ingredients {

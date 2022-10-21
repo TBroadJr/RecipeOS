@@ -10,6 +10,9 @@
 		F6527E2828F1BF9100200D38 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6527E2728F1BF9100200D38 /* PhotoPicker.swift */; };
 		F664E31928E6B7350092F88B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F664E31828E6B7350092F88B /* FirebaseAuth */; };
 		F664E31B28E6B7350092F88B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F664E31A28E6B7350092F88B /* FirebaseFirestore */; };
+		F67C2868290199EB00F77A0C /* ReauthenticateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C2867290199EB00F77A0C /* ReauthenticateView.swift */; };
+		F67C286A2902E3DE00F77A0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C28692902E3DE00F77A0C /* SettingsView.swift */; };
+		F67C286E2902EF0C00F77A0C /* RecipeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C286D2902EF0C00F77A0C /* RecipeSelectionView.swift */; };
 		F69BBB1B28D8A498007E41C0 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BBB1A28D8A498007E41C0 /* Animations.swift */; };
 		F69BBB1D28D8B8C0007E41C0 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BBB1C28D8B8C0007E41C0 /* Tab.swift */; };
 		F69BBB1F28D8B992007E41C0 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BBB1E28D8B992007E41C0 /* TabBar.swift */; };
@@ -39,14 +42,17 @@
 		F6ABB61D28E47EF50057FA35 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */; };
 		F6ABB62028E6018A0057FA35 /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB61F28E601890057FA35 /* RecipeDetail.swift */; };
 		F6ABB62328E614600057FA35 /* RecipeCookingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ABB62228E614600057FA35 /* RecipeCookingItem.swift */; };
-		F6B842E828FDB3670069531E /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B842E628FDB3670069531E /* Recipe+CoreDataClass.swift */; };
-		F6B842E928FDB3670069531E /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B842E728FDB3670069531E /* Recipe+CoreDataProperties.swift */; };
 		F6B842EC28FEEFC20069531E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F6B842EB28FEEFC20069531E /* FirebaseFirestoreSwift */; };
+		F6B842EF2900C39C0069531E /* Recipe+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B842ED2900C39C0069531E /* Recipe+CoreDataClass.swift */; };
+		F6B842F02900C39C0069531E /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B842EE2900C39C0069531E /* Recipe+CoreDataProperties.swift */; };
 		F6DEE48E28E87F5900C6955A /* BlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DEE48D28E87F5900C6955A /* BlobView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F6527E2728F1BF9100200D38 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		F67C2867290199EB00F77A0C /* ReauthenticateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReauthenticateView.swift; sourceTree = "<group>"; };
+		F67C28692902E3DE00F77A0C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F67C286D2902EF0C00F77A0C /* RecipeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSelectionView.swift; sourceTree = "<group>"; };
 		F69BBB1A28D8A498007E41C0 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		F69BBB1C28D8B8C0007E41C0 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		F69BBB1E28D8B992007E41C0 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -77,8 +83,8 @@
 		F6ABB61C28E47EF50057FA35 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
 		F6ABB61F28E601890057FA35 /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 		F6ABB62228E614600057FA35 /* RecipeCookingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCookingItem.swift; sourceTree = "<group>"; };
-		F6B842E628FDB3670069531E /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F6B842E728FDB3670069531E /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6B842ED2900C39C0069531E /* Recipe+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6B842EE2900C39C0069531E /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F6DEE48D28E87F5900C6955A /* BlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,8 +113,8 @@
 		F69DB91C28DCC5B30029B686 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F6B842E628FDB3670069531E /* Recipe+CoreDataClass.swift */,
-				F6B842E728FDB3670069531E /* Recipe+CoreDataProperties.swift */,
+				F6B842ED2900C39C0069531E /* Recipe+CoreDataClass.swift */,
+				F6B842EE2900C39C0069531E /* Recipe+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -203,6 +209,8 @@
 			children = (
 				F69ED7E228D2137B00AE5A82 /* SearchView.swift */,
 				F69ED7E428D2533E00AE5A82 /* AccountView.swift */,
+				F67C28692902E3DE00F77A0C /* SettingsView.swift */,
+				F67C286D2902EF0C00F77A0C /* RecipeSelectionView.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				F69ED80128D6B05600AE5A82 /* RegisterView.swift */,
 				F69ED80328D6B06200AE5A82 /* SignInView.swift */,
 				F69ED81428D6BB1000AE5A82 /* SignUpView.swift */,
+				F67C2867290199EB00F77A0C /* ReauthenticateView.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -374,19 +383,22 @@
 				F6ABB62328E614600057FA35 /* RecipeCookingItem.swift in Sources */,
 				F69ED81328D6BA1A00AE5A82 /* Style.swift in Sources */,
 				F69BBB1B28D8A498007E41C0 /* Animations.swift in Sources */,
-				F6B842E928FDB3670069531E /* Recipe+CoreDataProperties.swift in Sources */,
+				F6B842F02900C39C0069531E /* Recipe+CoreDataProperties.swift in Sources */,
 				F69ED7CD28D20E5100AE5A82 /* ContentView.swift in Sources */,
 				F6ABB61D28E47EF50057FA35 /* RecipeCard.swift in Sources */,
 				F69DB91B28DCA8F90029B686 /* RecipeModel.xcdatamodeld in Sources */,
 				F69BBB2C28D8C58B007E41C0 /* CreateView.swift in Sources */,
+				F67C2868290199EB00F77A0C /* ReauthenticateView.swift in Sources */,
 				F69ED7CB28D20E5100AE5A82 /* RecipeOSApp.swift in Sources */,
 				F69ED81528D6BB1000AE5A82 /* SignUpView.swift in Sources */,
 				F6ABB61A28E47DA50057FA35 /* ImageLoader.swift in Sources */,
 				F69ED80428D6B06200AE5A82 /* SignInView.swift in Sources */,
+				F67C286A2902E3DE00F77A0C /* SettingsView.swift in Sources */,
 				F69ED80C28D6B15E00AE5A82 /* DataManager.swift in Sources */,
+				F67C286E2902EF0C00F77A0C /* RecipeSelectionView.swift in Sources */,
 				F6DEE48E28E87F5900C6955A /* BlobView.swift in Sources */,
 				F69BBB1D28D8B8C0007E41C0 /* Tab.swift in Sources */,
-				F6B842E828FDB3670069531E /* Recipe+CoreDataClass.swift in Sources */,
+				F6B842EF2900C39C0069531E /* Recipe+CoreDataClass.swift in Sources */,
 				F69ED7DD28D2105200AE5A82 /* NavigationBar.swift in Sources */,
 				F69ED81128D6B87900AE5A82 /* PreferenceKeys.swift in Sources */,
 			);

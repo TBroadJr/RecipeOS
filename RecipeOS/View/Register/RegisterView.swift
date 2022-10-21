@@ -51,6 +51,8 @@ private extension RegisterView {
             switch manager.registerType {
             case .signUp: SignUpView()
             case .signIn: SignInView()
+            case .reauthenticate: ReauthenticateView()
+                
             }
         }
         .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))

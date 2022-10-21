@@ -12,10 +12,20 @@ struct AccountView: View {
     
     // MARK: - Properties
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var manager: DataManager
     @AppStorage("isLogged") var isLogged = true
     @AppStorage("isLiteMode") var isLiteMode = false
+    @AppStorage("showRegister") var showRegister = false
+    @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
 
+    var userName: String {
+        Auth.auth().currentUser?.displayName ?? "firstName lastName"
+    }
+    
     // MARK: - Body
     var body: some View {
         NavigationView {
@@ -23,6 +33,7 @@ struct AccountView: View {
                 profile
                 menu
                 signOutButton
+                deleteAccountButton
             }
             .navigationTitle("Account")
             .toolbar {
@@ -33,6 +44,18 @@ struct AccountView: View {
                         Text("Done")
                     }
                 }
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        deleteRecipes()
+                    } label: {
+                        Text("Reset")
+                    }
+                }
+            }
+            .alert(alertTitle, isPresented: $showAlert) {
+                Button("Dismiss", role: .cancel) { signOut() }
+            } message: {
+                Text(alertMessage)
             }
         }
     }
@@ -42,7 +65,7 @@ struct AccountView: View {
 private extension AccountView {
     
     // MARK: - Profile
-    private var profile: some View {
+    var profile: some View {
         VStack(spacing: 8) {
             Image(systemName: "person.crop.circle.fill.badge.checkmark")
                 .font(.title.weight(.semibold))
@@ -51,7 +74,7 @@ private extension AccountView {
                 .padding()
                 .background(Circle().fill(.ultraThinMaterial))
                 .background(BlobView().offset(x: 200).scaleEffect(0.6))
-            Text("Tornelius Broadwater, Jr")
+            Text(userName)
                 .font(.title.weight(.semibold))
                 .multilineTextAlignment(.center)
             
@@ -61,9 +84,9 @@ private extension AccountView {
     }
     
     // MARK: - Menu
-    private var menu: some View {
+    var menu: some View {
         Section {
-            NavigationLink { FavoriteView() } label: {
+            NavigationLink { SettingsView() } label: {
                 Label("Settings", systemImage: "gear")
             }
         }
@@ -73,11 +96,23 @@ private extension AccountView {
     }
     
     // MARK: - Sign Out Button
-    private var signOutButton: some View {
+    var signOutButton: some View {
         Button {
             signOut()
         } label: {
             Text("Sign Out")
+                .font(.headline.weight(.semibold))
+                .foregroundColor(.red)
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+    }
+    
+    // MARK: - Delete Account Button
+    var deleteAccountButton: some View {
+        Button {
+            deleteAccount()
+        } label: {
+            Text("Delete Account")
                 .font(.headline.weight(.semibold))
                 .foregroundColor(.red)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -89,11 +124,36 @@ private extension AccountView {
 private extension AccountView {
     
     // MARK: - Sign Out Function
-    private func signOut() {
+    func signOut() {
         try? Auth.auth().signOut()
         isLogged = false
         isLiteMode = false
         dismiss()
+    }
+    
+    // MARK: - Delete Account Button
+    func deleteAccount() {
+        guard let user = Auth.auth().currentUser else { return }
+        user.delete { error in
+            if let error = error {
+                manager.registerType = .reauthenticate
+                showRegister = true
+                dismiss()
+                print("Error \(error.localizedDescription)")
+            } else {
+                alertTitle = "Success"
+                alertMessage = "Account deleted"
+                showAlert = true
+            }
+        }
+    }
+    
+    // MARK: - Delete Recipes
+    func deleteRecipes() {
+        for recipe in recipes {
+            moc.delete(recipe)
+            try? moc.save()
+        }
     }
 }
 

@@ -46,6 +46,7 @@ struct DatabaseRecipe: Codable {
     var id: UUID
     var sourceURL: URL?
     var imageURL: URL?
+    var cookDate: Date?
 }
 
 struct RecipeDataArray: Codable {
