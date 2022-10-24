@@ -21,7 +21,6 @@ struct AccountView: View {
     @State private var showAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
-
     var userName: String {
         Auth.auth().currentUser?.displayName ?? "firstName lastName"
     }
@@ -45,13 +44,13 @@ struct AccountView: View {
                         Text("Done")
                     }
                 }
-//                ToolbarItemGroup(placement: .navigationBarLeading) {
-//                    Button {
-//                        deleteRecipes()
-//                    } label: {
-//                        Text("Reset")
-//                    }
-//                }
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        deleteRecipes()
+                    } label: {
+                        Text("Reset")
+                    }
+                }
             }
             .alert(alertTitle, isPresented: $showAlert) {
                 Button("Dismiss", role: .cancel) { signOut() }

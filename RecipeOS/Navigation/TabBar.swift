@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBar: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @AppStorage("selectedTab") var selectedTab: Tab = .discover
     @State private var color: Color = .teal
     @State private var tabItemWidth: CGFloat = .zero
@@ -19,7 +19,7 @@ struct TabBar: View {
         TabItem(title: "Favorite", icon: "bookmark", color: .purple, tab: .favorite)
     ]
     
-        // MARK: - body
+    // MARK: - body
     var body: some View {
         GeometryReader { geo in
             let hasHomeIndicator = geo.safeAreaInsets.bottom - 88 > 20
@@ -40,8 +40,12 @@ struct TabBar: View {
             .ignoresSafeArea()
         }
     }
+}
+
+// MARK: - TabBar Extension
+private extension TabBar {
     
-        // MARK: - Buttons
+    // MARK: - Buttons
     private var buttons: some View {
         ForEach(tabItems) { item in
             Button {
@@ -75,7 +79,7 @@ struct TabBar: View {
         }
     }
     
-        // MARK: - Background
+    // MARK: - Background
     private var background: some View {
         HStack {
             if selectedTab == .favorite { Spacer() }
@@ -89,12 +93,12 @@ struct TabBar: View {
         .padding(.horizontal, 8)
     }
     
-        // MARK: - Overlay
+    // MARK: - Overlay
     private var overlay: some View {
         HStack {
             if selectedTab == .favorite { Spacer() }
             if selectedTab == .create { Spacer() }
-
+            
             Rectangle()
                 .fill(color)
                 .frame(width: 28, height: 5)
@@ -106,7 +110,6 @@ struct TabBar: View {
         }
         .padding(.horizontal, 8)
     }
-    
 }
 
 struct TabBar_Previews: PreviewProvider {

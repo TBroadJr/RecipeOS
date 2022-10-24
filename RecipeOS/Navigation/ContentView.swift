@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-        // MARK: - Properties
+    // MARK: - Properties
     @AppStorage("selectedTab") var selectedTab: Tab = .discover
     @AppStorage("showRegister") var showRegister = false
     @EnvironmentObject var manager: DataManager
@@ -17,7 +17,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var recipes: FetchedResults<Recipe>
 
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         ZStack(alignment: .bottom) {
             switch selectedTab {
@@ -57,6 +57,7 @@ private extension ContentView {
             if recipes.isEmpty {
                 await manager.fetchRecipeAPI()
                 await manager.getRecipeServer()
+                print(recipes.count)
             }
         }
     }

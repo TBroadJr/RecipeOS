@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationBar: View {
     
-        // MARK: -  Properties
+    // MARK: -  Properties
     @AppStorage("isLogged") var isLogged = false
     @AppStorage("showRegister") var showRegister = false
     @State private var showSearch = false
@@ -17,7 +17,7 @@ struct NavigationBar: View {
     @Binding var hasScrolled: Bool
     var title = ""
     
-        // MARK: - Body
+    // MARK: - Body
     var body: some View {
         ZStack {
             background
@@ -27,8 +27,12 @@ struct NavigationBar: View {
         .frame(height: hasScrolled ? 44 : 70)
         .frame(maxHeight: .infinity, alignment: .top)
     }
+}
+
+// MARK: - NavigationBar Extension
+private extension NavigationBar {
     
-        // MARK: - Background
+    // MARK: - Background
     private var background: some View {
         Color.clear
             .background(.ultraThinMaterial)
@@ -36,7 +40,7 @@ struct NavigationBar: View {
             .opacity(hasScrolled ? 1 : 0)
     }
     
-        // MARK: - Title Text
+    // MARK: - Title Text
     private var titleText: some View {
         Text(title)
             .animatableFont(size: hasScrolled ? 22 : 34, weight: .bold)
@@ -46,10 +50,10 @@ struct NavigationBar: View {
             .offset(y: hasScrolled ? -4 : 0)
     }
     
-        // MARK: - Search Button
+    // MARK: - Search Button
     private var searchButton: some View {
         Button {
-           showSearch = true
+            showSearch = true
         } label: {
             Image(systemName: "magnifyingglass")
                 .font(.body.bold())
@@ -64,7 +68,7 @@ struct NavigationBar: View {
         }
     }
     
-        // MARK: - Account Button
+    // MARK: - Account Button
     private var accountButton: some View {
         Button {
             if isLogged {
@@ -93,7 +97,7 @@ struct NavigationBar: View {
         }
     }
     
-        // MARK: - Navigation Buttons
+    // MARK: - Navigation Buttons
     private var navigationButtons: some View {
         HStack(spacing: 16) {
             searchButton
@@ -105,6 +109,7 @@ struct NavigationBar: View {
         .offset(y: hasScrolled ? -4 : 0)
     }
 }
+
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
