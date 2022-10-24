@@ -31,8 +31,12 @@ struct AccountView: View {
             List {
                 profile
                 menu
-                signOutButton
-                deleteAccountButton
+                Section {
+                    signOutButton
+                }
+                Section {
+                    deleteAccountButton
+                }
             }
             .navigationTitle("Account")
             .statusBarHidden(true)
@@ -44,13 +48,13 @@ struct AccountView: View {
                         Text("Done")
                     }
                 }
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        deleteRecipes()
-                    } label: {
-                        Text("Reset")
-                    }
-                }
+//                ToolbarItemGroup(placement: .navigationBarLeading) {
+//                    Button {
+//                        deleteRecipes()
+//                    } label: {
+//                        Text("Reset")
+//                    }
+//                }
             }
             .alert(alertTitle, isPresented: $showAlert) {
                 Button("Dismiss", role: .cancel) { signOut() }
