@@ -15,7 +15,6 @@ struct DiscoverView: View {
     @Namespace var namespace
     @State private var hasScroll = false
     @State private var show = false
-    @State private var showStatusBar = false
     @State private var selectedID = UUID()
     let generator = UIImpactFeedbackGenerator(style: .medium)
     
@@ -28,16 +27,7 @@ struct DiscoverView: View {
                 recipeDetail
             }
         }
-        .statusBar(hidden: !showStatusBar)
-        .onChange(of: show) { newValue in
-            withAnimation(.closeCard) {
-                if newValue {
-                    showStatusBar = false
-                } else {
-                    showStatusBar = true
-                }
-            }
-        }
+        .statusBarHidden(true)
     }
 }
 
@@ -112,7 +102,6 @@ private extension DiscoverView {
                         withAnimation(.openCard) {
                             show.toggle()
                             manager.showDetail.toggle()
-                            showStatusBar = false
                             selectedID = recipe.unwrappedID
                             generator.impactOccurred()
                         }

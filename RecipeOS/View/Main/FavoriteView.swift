@@ -15,7 +15,6 @@ struct FavoriteView: View {
     @Namespace var namespace
     @State private var hasScroll = false
     @State private var show = false
-    @State private var showStatusBar = false
     @State private var selectedID = UUID()
     
     // MARK: - Body
@@ -53,16 +52,7 @@ private extension FavoriteView {
             Color.clear.frame(height: 70)
         }
        .overlay(navigationBarOverlay)
-       .statusBarHidden(!showStatusBar)
-       .onChange(of: show) { newValue in
-           withAnimation(.closeCard) {
-               if newValue {
-                   showStatusBar = false
-               } else {
-                   showStatusBar = true
-               }
-           }
-       }
+       .statusBarHidden(true)
     }
     
     // MARK: - Favorite Text
@@ -91,7 +81,6 @@ private extension FavoriteView {
                                 withAnimation(.openCard) {
                                     show.toggle()
                                     manager.showDetail.toggle()
-                                    showStatusBar = false
                                     selectedID = recipe.unwrappedID
                                 }
                             }
@@ -117,7 +106,6 @@ private extension FavoriteView {
                                 withAnimation(.openCard) {
                                     show.toggle()
                                     manager.showDetail.toggle()
-                                    showStatusBar = false
                                     selectedID = recipe.unwrappedID
                                 }
                             }

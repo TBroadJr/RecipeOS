@@ -26,6 +26,7 @@ struct SettingsView: View {
                 form
             }
             .navigationTitle("Settings")
+            .statusBarHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .navigationBarLeading) {

@@ -27,7 +27,6 @@ extension Recipe {
     @NSManaged public var servings: Int16
     @NSManaged public var sourceURL: URL?
     @NSManaged public var title: String?
-    @NSManaged public var cookDate: Date?
     
     public var cookingTimeInt: Int {
         Int(cookingTime)
@@ -78,11 +77,6 @@ extension Recipe {
         array = instructionsString.components(separatedBy: "$")
         return array
     }
-    
-    public var unwrappedCookDate: Date {
-        cookDate ?? Date()
-    }
-
 }
 
 extension Recipe : Identifiable {

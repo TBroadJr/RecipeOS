@@ -52,6 +52,7 @@ private extension SearchView {
         .searchable(text: $text, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Search Recipe"))
         .navigationTitle("Search")
         .navigationBarTitleDisplayMode(.inline)
+        .statusBarHidden(true)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {

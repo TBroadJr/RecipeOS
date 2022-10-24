@@ -35,6 +35,7 @@ struct ContentView: View {
                     .zIndex(1)
             }
         }
+        .statusBarHidden(true)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             Color.clear
                 .frame(height: 88)
