@@ -16,8 +16,7 @@ struct TabBar: View {
     private var tabItems = [
         TabItem(title: "Discover", icon: "magnifyingglass", color: .teal, tab: .discover),
         TabItem(title: "Create", icon: "plus", color: .blue, tab: .create),
-        TabItem(title: "Plan", icon: "calendar", color: .red, tab: .plan),
-        TabItem(title: "Favorite", icon: "bookmark", color: .teal, tab: .favorite)
+        TabItem(title: "Favorite", icon: "bookmark", color: .purple, tab: .favorite)
     ]
     
         // MARK: - body
@@ -81,19 +80,11 @@ struct TabBar: View {
         HStack {
             if selectedTab == .favorite { Spacer() }
             if selectedTab == .create { Spacer() }
-            if selectedTab == .plan {
-                Spacer()
-                Spacer()
-            }
             Circle()
                 .fill(color)
                 .frame(width: tabItemWidth)
             if selectedTab == .discover { Spacer() }
-            if selectedTab == .create {
-                Spacer()
-                Spacer()
-            }
-            if selectedTab == .plan { Spacer() }
+            if selectedTab == .create { Spacer() }
         }
         .padding(.horizontal, 8)
     }
@@ -103,10 +94,7 @@ struct TabBar: View {
         HStack {
             if selectedTab == .favorite { Spacer() }
             if selectedTab == .create { Spacer() }
-            if selectedTab == .plan {
-                Spacer()
-                Spacer()
-            }
+
             Rectangle()
                 .fill(color)
                 .frame(width: 28, height: 5)
@@ -114,11 +102,7 @@ struct TabBar: View {
                 .frame(width: tabItemWidth)
                 .frame(maxHeight: .infinity, alignment: .top)
             if selectedTab == .discover { Spacer() }
-            if selectedTab == .create {
-                Spacer()
-                Spacer()
-            }
-            if selectedTab == .plan { Spacer() }
+            if selectedTab == .create { Spacer() }
         }
         .padding(.horizontal, 8)
     }

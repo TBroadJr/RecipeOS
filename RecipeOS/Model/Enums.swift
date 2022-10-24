@@ -21,7 +21,6 @@ enum RegisterType {
 enum Tab: String {
     case discover
     case create
-    case plan
     case favorite
 }
 

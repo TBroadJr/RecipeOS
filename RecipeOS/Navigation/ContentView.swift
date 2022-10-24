@@ -23,7 +23,6 @@ struct ContentView: View {
             switch selectedTab {
             case .discover: DiscoverView()
             case .create: CreateView()
-            case .plan: PlanView()
             case .favorite: FavoriteView()
             }
             
