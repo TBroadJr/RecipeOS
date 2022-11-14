@@ -1,3 +1,8 @@
+<p align="center">
+
+<img width="100" alt="Screen Shot 2022-10-24 at 1 55 44 PM" src="https://user-images.githubusercontent.com/110937233/201699054-a0167232-2e55-403f-ab39-d533137c25f7.png">
+</p>
+
 # RecipeOS
 
 <p align="center">
