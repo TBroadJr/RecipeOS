@@ -39,5 +39,4 @@ RecipeOS is an iOS application that allows users to search through hundreds of r
 - Xcode 14.0.1
 
 ## Contact
-1. [Twitter](https://twitter.com/TBroadJr)
-2. [Email](tbroadjr@icloud.com)
+1. Email - tbroadjr@icloud.com
