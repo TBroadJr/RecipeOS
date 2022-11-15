@@ -37,3 +37,7 @@ RecipeOS is an iOS application that allows users to search through hundreds of r
 ## Requirements
 - iOS 16
 - Xcode 14.0.1
+
+## Contact
+1. [Twitter](https://twitter.com/TBroadJr)
+2. [Email](tbroadjr@icloud.com)
